@@ -1,0 +1,15 @@
+.masthead {
+  height: auto;
+  background-image: url("/assets/img/bg6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 8ex 0 8ex 0;
+}
+
+.btingan {
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 1em;
+  padding: 4ex 2ex 4ex 2ex;
+  opacity: 0.8;
+}
