@@ -40,7 +40,7 @@ const matMaterial = [
     CreatePostComponent,
     CreatePostIdComponent,
 
-    ShowpostComponent
+    ShowpostComponent,
 
     LoginComponent,
     RegisterComponent
