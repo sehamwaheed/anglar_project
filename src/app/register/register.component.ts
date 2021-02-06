@@ -1,4 +1,4 @@
-import { User } from './../_model/user';
+import { User } from '../_model/User';
 import { RegisterationService } from '../services/registeration.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';

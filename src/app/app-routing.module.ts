@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'Update',component:CreatePostIdComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '',   redirectTo: '/Home', pathMatch: 'full' }, // redirect to `first-component`
   {path:'Create',component:CreatePostComponent},
   {path:'Update',component:CreatePostIdComponent}
 ];
