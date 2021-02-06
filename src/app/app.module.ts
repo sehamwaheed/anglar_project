@@ -7,20 +7,48 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
 import { HomeComponent } from './home/home.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule, MAT_CHIPS_DEFAULT_OPTIONS} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { CreatePostIdComponent } from './create-post-id/create-post-id.component';
 
+
+
+const matMaterial = [
+  MatInputModule,
+  MatChipsModule,
+  MatIconModule
+]
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PostComponent,
     HomeComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    CreatePostIdComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ...matMaterial
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [ENTER, COMMA]
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

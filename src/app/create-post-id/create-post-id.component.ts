@@ -1,20 +1,16 @@
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostsService } from '../services/posts.service';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
+import { PostsService } from '../services/posts.service';
 
-// export interface Tages {
-//   name: string;
-// }
 @Component({
-  selector: 'app-create-post',
-  templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css'],
-
+  selector: 'app-create-post-id',
+  templateUrl: './create-post-id.component.html',
+  styleUrls: ['./create-post-id.component.css']
 })
-export class CreatePostComponent implements OnInit {
+export class CreatePostIdComponent implements OnInit {
 
   postForm : FormGroup;
   imagePreview: string;
@@ -58,7 +54,8 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+      _id: new FormControl('', [Validators.required]),
+      titel: new FormControl('', [Validators.required]),
       content: new FormControl('', [Validators.required]),
       imagePath: new FormControl(null, [Validators.required]),
       tags: new FormControl([], [Validators.required]),
@@ -66,6 +63,12 @@ export class CreatePostComponent implements OnInit {
 
     });
 
+    this.postForm.patchValue(this.postService.singlePost);
+    this.postForm.get('tags').patchValue(this.postService.singlePost.tags[0].split(','));
+
+
+    this.tages = this.postService.singlePost.tags[0].split(',');
+    this.imagePreview = this.postService.singlePost.imagePath;
   }
   onImagePicked(event : Event){
     const file = (event.target as HTMLInputElement).files[0]; // convert to html input and catch the file
@@ -83,9 +86,12 @@ export class CreatePostComponent implements OnInit {
    let data = this.postForm.value;
    console.log(data);
 
-    this.postService.createPost(data).subscribe(data =>{
+    this.postService.updatePost(data._id, data.titel, data.content, data.imagePath, data.tags).subscribe(data =>{
       console.log(data);
       this.router.navigate(['/Home'])
     })
   }
+
+
+
 }
