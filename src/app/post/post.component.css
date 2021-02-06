@@ -1,5 +1,5 @@
 body {
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
 
 .h7 {
@@ -24,4 +24,14 @@ body {
 .dropdown-toggle::after {
   content: none;
   display: none;
+}
+
+.flex-auto {
+  display: flex;
+  justify-content: center;
+}
+.media {
+  margin: 0.8rem;
+  border: 1px solid;
+  padding: 0.5rem;
 }

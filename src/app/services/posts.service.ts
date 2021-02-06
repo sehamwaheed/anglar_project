@@ -68,6 +68,7 @@ private getHeadders( incomingHeaders?: HttpHeaders ): { headers: HttpHeaders; } 
           : new HttpHeaders({
                 Authorization:
                     "Bearer " + localStorage.getItem("token"),
+
             }),
       // observe: "response",
   };
@@ -75,11 +76,20 @@ private getHeadders( incomingHeaders?: HttpHeaders ): { headers: HttpHeaders; } 
 
 //delete post
 deletePost(id){
- return this.http.delete(this.api+'blog/'+id,this.getHeadders());
+ return this.http.delete(this.api+'blog/'+id ,this.getHeadders());
 }
 
-// getPostById(id){
-//   return this.http.get(this.api+)
-// }
+getPostById(id){
+  return this.http.get(this.api+'blog/'+id ,this.getHeadders());
+}
+
+likes(id){
+  return this.http.post(this.api+'blog/like/'+id,null,this.getHeadders());
+}
+
+creatComent(id,coment){
+  return this.http.post(this.api+'comment/add/'+id,coment, this.getHeadders())
+}
+
 
 }
