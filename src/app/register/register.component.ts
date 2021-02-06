@@ -1,8 +1,9 @@
-import { User } from './../_model/user';
+
 import { RegisterationService } from '../services/registeration.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../_model/User';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,14 +23,14 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email,Validators.pattern(this.emailPattern)]),
     password : new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(20),Validators.pattern(this.pwdPattern)]),
     dob : new FormControl('', [Validators.required]),
-   
+
   });
   submitted = false;
   newUser: User =new User ( '','','','','');
   //Add user form actions
   get f() { return this.registerForm.controls; }
   submit() {
-    
+
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
     //True if all the fields are filled
     if(this.submitted)
     {
-    
+
             //alert("You are registered");
            // this.registerForm.value(null);
 
@@ -48,10 +49,10 @@ export class RegisterComponent implements OnInit {
              this.router.navigate(['login'])
            });
            //this.registerForm.reset();
-           
+
            //console.log(this.newUser);
     }
-   
+
   }
   ngOnInit(): void {
   }
