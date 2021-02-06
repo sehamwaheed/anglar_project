@@ -22,12 +22,15 @@
               <li routerLinkActive="active">
                   <a class="nav-link waves-effect waves-light " routerLink="">Profile</a>
               </li>
-              <li routerLinkActive="active">
-                  <a class="nav-link waves-effect waves-light" routerLink="">LogIn</a>
+              <li routerLinkActive="active" >
+                <a class="nav-link" routerLink="/register"  routerLinkActive="active bg-success">register</a>
               </li>
               <li routerLinkActive="active">
-                <a class="nav-link waves-effect waves-light" routerLink="">Register</a>
-            </li>
+                  <a class="nav-link" routerLink="/Home"  routerLinkActive="active  bg-success">login</a>
+              <li routerLinkActive="active">
+                  <a class="nav-link" routerLink="" *ngIf="!flag"  routerLinkActive="active  bg-success"(click)="logout()">logout
+                  </a>
+             </li>
           </ul>
       </div>
   </div>
