@@ -132,7 +132,7 @@
               </div>
               <div class="card-footer">
                   <a class="card-link" (click)="onLike(post?._id)"><i class="fa fa-gratipay" aria-hidden="true"></i>{{post?.likes.length}} Like</a>
-                  <a  class="card-link" (click)="divCom.style.display == 'block'? divCom.style.display ='none':divCom.style.display ='block' "><i class="fa fa-comment"></i> {{post?.comments.length}} Comment</a>
+                  <a  class="card-link" (click)="divCom.style.display == 'block'? divCom.style.display ='none':divCom.style.display ='block' "><i class="fa fa-comments"></i> {{post?.comments.length}} Comment</a>
                   <a [routerLink]="['/Show',post?._id]"   class="card-link"><i class="fa fa-mail-forward" ></i> Show</a>
 
                   <div class="input-group mb-3 mt-3">

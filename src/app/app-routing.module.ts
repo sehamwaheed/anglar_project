@@ -13,15 +13,13 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {path:'Home',component:HomeComponent},
   {path:'Create',component:CreatePostComponent},
-  {path:'Update',component:CreatePostIdComponent},
+  {path:'Update/:id',component:CreatePostIdComponent},
 
   {path:'Show/:id',component:ShowpostComponent},
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }, // redirect to `first-component`
-  {path:'Create',component:CreatePostComponent},
-  {path:'Update',component:CreatePostIdComponent}
+  { path: '',   redirectTo: '/Home', pathMatch: 'full' } // redirect to `first-component`
 
 ];
 

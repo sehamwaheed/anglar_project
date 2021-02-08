@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
   flag :Boolean=true;
   constructor() { }
   logout() {
-    localStorage.removeItem('Token');
+    localStorage.removeItem('token');
    this.flag=false;
   }
   ngOnInit(): void {

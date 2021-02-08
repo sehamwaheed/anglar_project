@@ -58,8 +58,8 @@ export class PostComponent implements OnInit {
     )
   }
   goToUpate(post){
-    this.postService.singlePost = post;
-    this.router.navigate(['/Update'])
+
+    this.router.navigate(['/Update',post._id])
   }
 
   createComent(id,coment){

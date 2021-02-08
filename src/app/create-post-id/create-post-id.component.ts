@@ -1,8 +1,8 @@
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { ENTER, COMMA, T } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../services/posts.service';
 
 @Component({
@@ -14,9 +14,11 @@ export class CreatePostIdComponent implements OnInit {
 
   postForm : FormGroup;
   imagePreview: string;
+  postId: string;
   constructor(
     private postService: PostsService,
-    private router: Router
+    private router: Router,
+    private activeRoute: ActivatedRoute
 
   ) { }
   visible = true;
@@ -62,13 +64,20 @@ export class CreatePostIdComponent implements OnInit {
 
 
     });
-
-    this.postForm.patchValue(this.postService.singlePost);
+    this.activeRoute.paramMap.subscribe(param => {
+      this.postId = param.get('id');
+      this.postService.getPostById(this.postId).subscribe(data =>{
+        this.postService.singlePost = data;
+        console.log(`this.pos`, this.postService.singlePost);
+        this.postForm.patchValue(this.postService.singlePost);
     this.postForm.get('tags').patchValue(this.postService.singlePost.tags[0].split(','));
 
 
     this.tages = this.postService.singlePost.tags[0].split(',');
     this.imagePreview = this.postService.singlePost.imagePath;
+      })
+    })
+
   }
   onImagePicked(event : Event){
     const file = (event.target as HTMLInputElement).files[0]; // convert to html input and catch the file

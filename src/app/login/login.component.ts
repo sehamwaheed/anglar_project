@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
  submit() {
  this.newUser=this.LoginForm.value;
  this.AuthService.login(this.newUser.email , this.newUser.password)
- .subscribe( result => {
+ .subscribe( (result:any) => {
      localStorage.setItem('token',result.token);
      this.router.navigate(['Home'])},
    error => this.error = 'Could not authenticate'

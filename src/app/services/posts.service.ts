@@ -45,14 +45,14 @@ updatePost(id: string, titel: string, content: string, image: File | string, tag
   if (typeof (image) === "object") {
     postData = new FormData();
 
-    postData.append('id', id);
+    postData.append('_id', id);
     postData.append('titel', titel);
     postData.append('content', content);
     postData.append('tags', tags);
     postData.append('image', image, titel);
 
   } else {
-    postData = { id: id, titel: titel, content: content, imagePath: image ,tags:tags };
+    postData = { _id: id, titel: titel, content: content, imagePath: image ,tags:tags };
   }
 
   return this.http.patch(this.api + 'blog/'+id, postData ,this.getHeadders())
