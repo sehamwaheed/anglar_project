@@ -20,16 +20,15 @@
                   <a class="nav-link waves-effect waves-light" routerLink="/Home">Home</a>
               </li>
               <li routerLinkActive="active">
-                  <a class="nav-link waves-effect waves-light " *ngIf="isLoggedIn$ | async" routerLink="">Profile</a>
+                  <a class="nav-link waves-effect waves-light " *ngIf="login" routerLink="">Profile</a>
               </li>
               <!-- <li routerLinkActive="active">
                 <a class="nav-link" routerLink="/register" *ngIf="!isLoggedIn$ | async" routerLinkActive="active bg-success">register</a>
               </li> -->
               <li routerLinkActive="active">
-                  <a class="nav-link"  routerLink="/login" *ngIf="!isLoggedIn$ | async" routerLinkActive="active  bg-success">login</a>
-              <li routerLinkActive="active"> 
-                  <a class="nav-link btn active" *ngIf="isLoggedIn$ | async" routerLinkActive="active  bg-success"(click)="logout()">logout
-                  </a>
+                  <a class="nav-link"  routerLink="/login" *ngIf="!login" routerLinkActive="active  bg-success">login</a>
+              <li routerLinkActive="active">
+                  <a class="nav-link btn active" *ngIf="login" routerLinkActive="active  bg-success"(click)="logout()">logout </a>
              </li>
           </ul>
       </div>

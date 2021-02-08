@@ -23,7 +23,7 @@ export class RegisterationService {
     return this.http.get<User>("https://blogs-1.herokuapp.com/user");
   }
   login(_email: string, password: string){
-    return this.http.post<{token:string}>('https://blogs-1.herokuapp.com/login', {email: _email, password: password})
+    return this.http.post<{token:string}>('https://blogs-1.herokuapp.com/user/login', {email: _email, password: password})
   }
   logout(){
     localStorage.removeItem('token');
