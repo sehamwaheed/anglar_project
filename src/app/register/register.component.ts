@@ -1,9 +1,8 @@
-
+import { User } from '../_model/User';
 import { RegisterationService } from '../services/registeration.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../_model/User';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,7 +13,8 @@ export class RegisterComponent implements OnInit {
   usernamePattern = "^[a-zA-Z_]{3,12}[0-9]{1,3}$";
   pwdPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,7}.com$";
-  datePaterrn ="^(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])-\\d{4}$";
+  maxDate = "12-31-2000";
+  minDate ="12-31-1950";
   constructor(private RegisterationService:RegisterationService,private router:Router ) { }
   registerForm: FormGroup = new FormGroup({
     FirstName: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(15),Validators.pattern(this.namePattern)]),
@@ -39,17 +39,13 @@ export class RegisterComponent implements OnInit {
     //True if all the fields are filled
     if(this.submitted)
     {
-
-            //alert("You are registered");
-           // this.registerForm.value(null);
-
            this.newUser=this.registerForm.value;
            this.RegisterationService.addUser(this.newUser).subscribe(data =>{
              console.log(data);
              this.router.navigate(['login'])
            });
+         
            //this.registerForm.reset();
-
            //console.log(this.newUser);
     }
 
