@@ -17,13 +17,13 @@ export class RegisterationService {
   }
   constructor(private http:HttpClient,private router: Router) { }
   addUser(user:User):Observable<any>{
-    return this.http.post<User>("http://localhost:8080/user",user);
+    return this.http.post<User>("https://blogs-1.herokuapp.com/user",user);
   }
   getAll():Observable<any>{
-    return this.http.get<User>("http://localhost:8080/user");
+    return this.http.get<User>("https://blogs-1.herokuapp.com/user");
   }
   login(_email: string, password: string){
-    return this.http.post<{token:string}>('http://localhost:8080/user/login', {email: _email, password: password})
+    return this.http.post<{token:string}>('https://blogs-1.herokuapp.com/login', {email: _email, password: password})
   }
   logout(){
     localStorage.removeItem('token');
