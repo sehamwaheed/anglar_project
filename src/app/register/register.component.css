@@ -23,3 +23,8 @@ label{
     font-size: 1rem;
 }
 
+input{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
