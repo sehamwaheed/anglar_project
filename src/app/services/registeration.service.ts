@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class RegisterationService {
-
+  error:boolean=false;
   public loggedIn = new BehaviorSubject<boolean>(false); // {1}
 
   get isLoggedIn() {

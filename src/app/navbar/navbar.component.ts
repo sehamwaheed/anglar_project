@@ -12,8 +12,6 @@ export class NavbarComponent implements OnInit {
   constructor(private RegisterationService:RegisterationService) {}
   logout() {
      this.RegisterationService.logout();
-     
-    // this.regflag= this.RegisterationService.regFlag;
   }
   ngOnInit(): void {
     this.isLoggedIn$ = this.RegisterationService.isLoggedIn;

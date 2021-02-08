@@ -11,10 +11,9 @@ form{
     text-align: center;
     margin: auto;
     margin-top: 0.5%;
-    border: 1px solid grey;
     border-radius:2%;
     padding: 10px; 
-    background-color:rgb(240, 240, 240);
+    padding: 1%;
 }
 div{
     font-size: 0.9rem;
@@ -27,4 +26,12 @@ input{
     border-top: none;
     border-right: none;
     border-left: none;
+    border-color: rgb(88, 86, 86);
+}
+img{
+    border-radius:50% ;
+    width:120px;
+    height: 120px;
+    margin: 1%;
+
 }
