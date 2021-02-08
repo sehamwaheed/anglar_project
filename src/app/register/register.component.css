@@ -1,0 +1,25 @@
+body{
+    background-image: url('../../assets/img/login.jpg');
+    background-size: cover;
+    height: 93.1%;
+    overflow-y: hidden  !important;
+    
+   
+}
+form{
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    margin-top: 0.5%;
+    border: 1px solid grey;
+    border-radius:2%;
+    padding: 10px; 
+    background-color:rgb(240, 240, 240);
+}
+div{
+    font-size: 0.9rem;
+}
+label{
+    font-size: 1rem;
+}
+
