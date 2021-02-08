@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-
+import { RegisterationService } from './../services/registeration.service';
+import { Component, OnInit,Input } from '@angular/core';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  flag :Boolean=true;
-  constructor() { }
+
+  isLoggedIn$: Observable<boolean>;  
+  constructor(private RegisterationService:RegisterationService) {}
   logout() {
-    localStorage.removeItem('Token');
-   this.flag=false;
+     this.RegisterationService.logout();
   }
   ngOnInit(): void {
+    this.isLoggedIn$ = this.RegisterationService.isLoggedIn;
   }
 
 }
