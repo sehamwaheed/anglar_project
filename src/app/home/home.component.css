@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+/* .masthead {
+  height: auto;
+  background-image: url("/assets/img/bg6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 8ex 0 8ex 0;
+}
+
+.btingan {
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 1em;
+  padding: 4ex 2ex 4ex 2ex;
+  opacity: 0.8;
+} */
+
+/* @media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #1c2331 !important;
+  }
+} */
+
+.carousel,
+.carousel .carousel-inner,
+.carousel .carousel-inner .active,
+.carousel .carousel-inner .carousel-item,
+.view,
+body,
+html {
+  height: 100%;
+}
+/* .navbar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.page-footer,
+.top-nav-collapse {
+  background-color: #1c2331;
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1c2331;
+  }
+} */

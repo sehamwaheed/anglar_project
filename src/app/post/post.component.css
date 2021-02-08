@@ -1,0 +1,37 @@
+body {
+  background-color: #ffffff;
+}
+
+.h7 {
+  font-size: 0.8rem;
+}
+
+.gedf-wrapper {
+  margin-top: 0.97rem;
+}
+
+@media (min-width: 992px) {
+  .gedf-main {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  .gedf-card {
+    margin-bottom: 2.77rem;
+  }
+}
+
+/**Reset Bootstrap*/
+.dropdown-toggle::after {
+  content: none;
+  display: none;
+}
+
+.flex-auto {
+  display: flex;
+  justify-content: center;
+}
+.media {
+  margin: 0.8rem;
+  border: 1px solid;
+  padding: 0.5rem;
+}
