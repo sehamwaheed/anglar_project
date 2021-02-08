@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface Post{
-  id,
+  _id,
   titel,
   content,
   imagePath,
