@@ -2,12 +2,20 @@
    <div class="row m-auto text-center mt-5" >
       <div class="m-auto text-center col" >
       <form [formGroup]="registerForm" (ngSubmit)="submit()">
-         <div>
-            <img src="../../assets/img/logo.png" fa-border/>
-         </div>
+         <div class="mb-3">
+            <img  id="userImg" [src]="imageURL" *ngIf="imageURL && imageURL !== ''" />
+            <span id="cameraicon" class="ml-3 mt-5">
+               <label for="file-input">
+                  <i class="fa fa-camera" style="font-size:22px;color: rgb(253, 253, 253);"></i>   
+                  <p style="color: rgba(64, 64, 68, 0.76);">Choose photo</p>                
+               </label>
+               
+               <input id="file-input" type="file" (change)="onPhotoSelect($event)" />
+            </span>
+        </div>
            <div class="col-sm-12 m-auto">
               <div class="form-group">
-                    <input type="text" formControlName="FirstName" placeholder="Fristname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" />
+                    <input type="text" formControlName="FirstName" placeholder="enter your fristname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" />
                     <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
                           <div *ngIf="f.FirstName.errors.required">fristname is required</div>
                           <div *ngIf="f.FirstName.errors.minlength">firstname must be at least 3 characters</div>
@@ -18,7 +26,7 @@
            </div> 
            <div class="col-sm-12 m-auto">
               <div class="form-group">
-                    <input type="text" formControlName="LastName" placeholder="Lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" />
+                    <input type="text" formControlName="LastName" placeholder="enter your lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" />
                     <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
                           <div *ngIf="f.LastName.errors.required">lastname is required</div>
                           <div *ngIf="f.LastName.errors.minlength">must be at least 3 characters</div>
@@ -30,7 +38,7 @@
            </div> 
            <div class="col-sm-12 m-auto">
             <div class="form-group">
-                  <input type="text" formControlName="userName" placeholder="Username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                  <input type="text" formControlName="userName" placeholder="enter your username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
                   <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
                         <div *ngIf="f.userName.errors.required">username is required</div>
                         <div *ngIf="f.userName.errors.minlength">username must be at least 6 characters</div>
@@ -41,7 +49,7 @@
          </div> 
          <div class="col-sm-12  m-auto">
             <div class="form-group">
-               <input type="text" formControlName="email" placeholder="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+               <input type="text" formControlName="email" placeholder="enter your email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
                   <div *ngIf="f.email.errors.pattern">invalid email address must be in form xxx@xxxx.com &lower charcters</div>
@@ -50,7 +58,7 @@
          </div>
          <div class="col-sm-12 m-auto">
             <div class="form-group">
-                  <input type="password" formControlName="password" placeholder="Password"data-toggle="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <input type="password" formControlName="password" placeholder="enter your password"data-toggle="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">password is required</div>
                         <div *ngIf="f.password.errors.minlength">invalid password min 8 characters</div>
@@ -62,17 +70,18 @@
            <div class="col-sm-12 m-auto">
             <div class="form-group">
                <input class="form-control" formControlName="dob" placeholder="Date Of Birth" type="date" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"  [min]="minDate" [max]="maxDate">
+               <p>your age must be +18 to register</p>
                <!-- <input type="date" formControlName="dob" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" /> -->
                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                   <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
-                  <div *ngIf="f.dob.errors.pattern">Date of Birth must be  valid </div>
                </div>
             </div>
          </div>
-         
-       <button type="submit" class="btn btn-dark mb-2 " >Register</button>
+         <div class="form-group">
+            <button type="submit" class="btn btn-dark mb-2 " >Register</button>
+        </div>
        <!-- <button class="btn btn-danger ml-md-4 mb-1 col-sm-12 ml-sm-0  col-md-4 " routerLink="/login">Cancel</button> -->
-       <p>if you already have acount <b><a text-primary routerLink="/login">sign in</a></b></p>
+       <p>if you already have acount <b><a text-primary routerLink='/login'>sign in</a></b></p>
       </form>
       </div>
   

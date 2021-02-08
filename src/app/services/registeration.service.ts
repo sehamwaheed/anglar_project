@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RegisterationService {
   error:boolean=false;
+  imageURLServ: string;
   public loggedIn = new BehaviorSubject<boolean>(false); // {1}
 
   get isLoggedIn() {

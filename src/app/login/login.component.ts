@@ -1,6 +1,6 @@
 import { RegisterationService } from './../services/registeration.service';
 import { User } from '../_model/User';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,16 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+ 
   constructor(private RegisterationService:RegisterationService,private router:Router ) {
+    
   };
    error: any ;
-
- LoginForm: FormGroup = new FormGroup({
+  LoginForm: FormGroup = new FormGroup({
    email : new FormControl('', [Validators.required]),
    password : new FormControl('', [Validators.required]),
 
  });
+ imageURlLogin :String =localStorage.getItem('UserImage');
+ 
+// =this.RegisterationService.imageURLServ;
  submitted = false;
  newUser: User =new User ( '','','','','');
 
@@ -51,9 +54,11 @@ export class LoginComponent implements OnInit {
           error => this.error = 'Could not authenticate'
         );
     }    
+    console.log(this.imageURlLogin);
  }
 
   ngOnInit(): void {
   }
+
 
 }

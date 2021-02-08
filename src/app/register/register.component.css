@@ -35,3 +35,9 @@ img{
     margin: 1%;
 
 }
+#cameraicon>input {
+    display: none;
+  }
+  
+
+
