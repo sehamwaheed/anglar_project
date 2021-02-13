@@ -60,11 +60,15 @@ body {
 
 .btn {
   outline: none;
+  border: none;
   transition: all 200ms;
 }
 
 .btn:hover {
-  background-color: #ddd;
+  background-color: rgb(103, 21, 255);
+}
+.btn:focus {
+  background-color: rgb(103, 21, 255);
 }
 .inputComent {
   border-radius: 2em;

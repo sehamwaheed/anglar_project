@@ -59,3 +59,6 @@ button {
 a:hover {
   color: #c47bf8;
 }
+.btn-dark:focus {
+  background-color: #8912dd;
+}
