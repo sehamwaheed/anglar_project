@@ -105,7 +105,7 @@
                 type="submit"
                 class="btn btn-primary"
                 routerLink="/Create"
-                style="background-color: #3d4199"
+                style="background-color: #3d4199; color: #ffffff"
               >
                 Create
               </button>
@@ -179,7 +179,7 @@
           [src]="post?.imagePath"
           class=""
           alt=""
-          height="250"
+          height="275"
           style="width: 100%"
           onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'"
         />
@@ -248,7 +248,7 @@
                 class="btn btn-primary inputComent"
                 (click)="createComent(post?._id, com?.value); com.value = ''"
                 type="button"
-                style="background-color: #3d4199"
+                style="background-color: #3d4199; color: #ffffff"
               >
                 Send
               </button>

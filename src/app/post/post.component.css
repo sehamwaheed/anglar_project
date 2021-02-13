@@ -65,10 +65,7 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(103, 21, 255);
-}
-.btn:focus {
-  background-color: rgb(103, 21, 255);
+  color: rgb(103, 21, 255);
 }
 .inputComent {
   border-radius: 2em;

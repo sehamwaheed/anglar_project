@@ -73,7 +73,7 @@
               {{ comment?.author?.FirstName }} {{ comment?.author?.LastName }}
             </h5>
             <div
-              class="p-3"
+              class="p-3 d-flex flex-column"
               style="
                 background-color: rgba(175, 175, 175, 0.247);
                 width: fit-content;
@@ -82,18 +82,19 @@
             >
               <p>{{ comment?.content }}</p>
 
-              <span
-                class="history float-right"
-                style="
-                  font-size: small;
-                  font-weight: 300;
-                  color: rgba(5, 5, 5, 0.795);
-                  padding-bottom: 1em;
-                  margin: -1em;
-                "
-              >
-                {{ getTimeFromNow(comment?.createdAt) }}
-              </span>
+              <div class="align-self-end">
+                <span
+                  class=""
+                  style="
+                    font-size: small;
+                    font-weight: 300;
+                    color: rgba(5, 5, 5, 0.555);
+                  "
+                >
+                  <i class="far fa-clock" style="color: #3d4199"></i>
+                  {{ getTimeFromNow(comment?.createdAt) }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
