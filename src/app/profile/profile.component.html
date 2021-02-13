@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="profile">
+        <div class="profile-header">
+            <div class="profile-header-cover"></div>
+            <div class="profile-header-content">
+                <div class="profile-header-img">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                </div>
+                <ul class="profile-header-tab nav nav-tabs nav-tabs-v2">
+                    <li class="nav-item">
+                        <a href="#profile-post" class="nav-link" data-toggle="tab">
+                            <div class="nav-field">Posts</div>
+                            <div class="nav-value">{{myposts.length}}</div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile-followers" class="nav-link active" data-toggle="tab">
+                            <div class="nav-field">Followers</div>
+                            <div class="nav-value">{{followers}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <div class="desktop-sticky-top">
+                    <h4>{{userDetails?.FirstName}} {{userDetails?.LastName}}</h4>
+                    <div class="font-weight-600 mb-3 text-muted mt-n2">{{userDetails?.userName}}</div>
+                    <div class="font-weight-600 mb-3 text-muted mt-n2">{{userDetails?.email}}</div>
+                    <hr class="mt-4 mb-4" />
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane fade active show" id="profile-followers">
+                                <div class="list-group">
+                                    <div class="list-group-item d-flex align-items-center" *ngFor="let item of userDetails?.following">
+                                        <div class="flex-fill pl-3 pr-3">
+                                            <div><a href="#" class="text-dark font-weight-600">{{item.FirstName}}
+                                                    {{item.LastName}}</a></div>
+                                            <div class="text-muted fs-13px">{{item.email}}</div>
+                                        </div>
+                                        <a href="#" class="btn btn-outline-primary" (click)="click()">Follow</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="tab-content p-0"></div>
+                        <div class="tab-pane fade active show" id="#profile-post">   
+                            <div class="card gedf-card" *ngFor="let post of myposts ">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2">
+                                                <!-- <img class="rounded-circle" width="45" [src]="post?.imagePath" alt=""> -->
+                                            </div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0">@{{post?.author?.userName}}</div>
+                                                <div class="h7 text-muted">{{post?.author?.FirstName}} {{post?.author?.LastName}}</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                                    <div class="h6 dropdown-header">Configuration</div>
+                                                    <a class="dropdown-item" (click)="goToUpate(post)">Update</a>
+                                                    <a class="dropdown-item" (click)="delete(post?._id)">Delete</a>
+                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                  
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{ getTimeFromNow(post?.creatAt)}}</div>
+                                    <a class="card-link" href="#">
+                                        <h5 class="card-title"> {{post?.titel}}</h5>
+                                    </a>
+                                    <div>
+                                      <img [src]="post?.imagePath" style="width: 100%;" alt="">
+                                    </div>
+                  
+                                    <p class="card-text">
+                                        {{post?.content}}
+                                    </p>
+                                    <div>
+                                        <span class="badge badge-primary" *ngFor="let item of post?.tags">{{item}}</span>
+                  
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="card-link" (click)="onLike(post?._id)"><i class="fa fa-gratipay" aria-hidden="true"></i>{{post?.likes.length}} Like</a>
+                                    <a  class="card-link" (click)="divCom.style.display == 'block'? divCom.style.display ='none':divCom.style.display ='block' "><i class="fa fa-comments"></i> {{post?.comments.length}} Comment</a>
+                                    <a [routerLink]="['/Show',post?._id]"   class="card-link"><i class="fa fa-mail-forward" ></i> Show</a>
+                  
+                                    <div class="input-group mb-3 mt-3">
+                                      <input type="text" class="form-control" #com placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" (click)="createComent(post?._id,com?.value); com.value =''" type="button">Send</button>
+                                      </div>
+                                    </div>
+                                </div>
+                  
+                               <div style="display: none" #divCom>
+                                <div class="media" *ngFor="let comment of post?.comments |slice:0:4">
+                  
+                                  <div class="media-body">
+                                    <h5 class="mt-0">{{comment?.author?.userName}}</h5>
+                                    {{comment?.content}}
+                                  </div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
