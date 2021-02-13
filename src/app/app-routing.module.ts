@@ -11,10 +11,9 @@ import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path:'Home',component:HomeComponent, canActivate: [AuthGuard] },
+  {path:'Home',component:HomeComponent, canActivate: [AuthGuard]},
   {path:'Create',component:CreatePostComponent},
   {path:'Update',component:CreatePostIdComponent},
-
   {path:'Show/:id',component:ShowpostComponent},
 
   { path: 'login', component: LoginComponent },
