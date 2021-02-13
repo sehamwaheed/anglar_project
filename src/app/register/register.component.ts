@@ -43,7 +43,13 @@ export class RegisterComponent implements OnInit {
            this.newUser=this.registerForm.value;
            this.RegisterationService.addUser(this.newUser).subscribe(data =>{
              //console.log(data);
-             localStorage.setItem('UserImage',this.imageURL);
+             if(this.imageURL){
+              localStorage.setItem('UserImage',this.imageURL);
+             }else{
+              this.imageURL="../../assets/img/logo.png";
+              localStorage.setItem('UserImage',this.imageURL);
+             }
+            
              this.router.navigate(['login']);
             
            });

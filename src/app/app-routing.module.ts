@@ -5,8 +5,6 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CreatePostIdComponent } from './create-post-id/create-post-id.component';
 import{AuthGuard} from './services/auth.guard'
 import { ShowpostComponent } from './showpost/showpost.component';
-
-
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   this.submitted = true;
   // stop here if form is invalid
       if (this.LoginForm.invalid) return;
-  
+
       this.newUser=this.LoginForm.value;
       this.submitted = true;
       // stop here if form is invalid
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',result.token);
           this.router.navigate(['Home']);
           this.RegisterationService.loggedIn.next(true)
-        },   
+        },
           error => this.error = 'Could not authenticate'
         );
     }    
