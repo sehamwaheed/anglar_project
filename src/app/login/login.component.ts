@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
       this.RegisterationService.login(this.newUser.email , this.newUser.password)
       .subscribe( result => {
           localStorage.setItem('token',result.token);
+          localStorage.setItem('uid',result['_id']);
           this.router.navigate(['Home']);
           this.RegisterationService.loggedIn.next(true)
         },

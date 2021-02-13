@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class RegisterationService {
   error:boolean=false;
   public loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  isAuthenticated: boolean =false;
 
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
@@ -27,8 +28,23 @@ export class RegisterationService {
   }
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('uid');
     // this.flag=false;
     this.loggedIn.next(false);
+    this.isAuthenticated =false;
     this.router.navigate(['/login']);
   }
+  getIsAuth(){
+    return this.isAuthenticated;
+  }
+getToken(){
+  return localStorage.getItem('token');
+}
+autoDetactUser(){
+  const userToken = this.getToken();
+  if (userToken) {
+    this.isAuthenticated = true;
+    this.loggedIn.next(true);
+  }
+}
 }

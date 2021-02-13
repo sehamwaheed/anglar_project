@@ -25,20 +25,24 @@
 .carousel .carousel-inner,
 .carousel .carousel-inner .active,
 .carousel .carousel-inner .carousel-item,
-.view,
-body,
-html {
+.view {
   height: 100%;
-}
-/* .navbar {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.page-footer,
-.top-nav-collapse {
-  background-color: #1c2331;
+
+strong {
+  color: white;
+  font-weight: bolder;
 }
-@media only screen and (max-width: 768px) {
-  .navbar {
-    background-color: #1c2331;
-  }
-} */
+
+.jumbotron {
+  background-image: url("/assets/img/kisspng-paper-recruitment-poster-graduation-ceremony-wallp-colorful-sky-background-5a70bea793b6a2.1508016715173382796051.png");
+  background-size: content;
+  background-repeat: no-repeat;
+  color: #3d4199;
+  height: 30em;
+  font-family: "Lobster", cursive;
+}
+.lead {
+  font-family: "Noto Sans JP", sans-serif;
+}

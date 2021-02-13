@@ -1,3 +1,4 @@
+import { AuthGuard } from './gards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,10 +12,10 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:'Home',component:HomeComponent  },
-  {path:'Create',component:CreatePostComponent},
-  {path:'Update/:id',component:CreatePostIdComponent},
+  {path:'Create',component:CreatePostComponent, canActivate:[AuthGuard]},
+  {path:'Update/:id',component:CreatePostIdComponent, canActivate:[AuthGuard]},
 
-  {path:'Show/:id',component:ShowpostComponent},
+  {path:'Show/:id',component:ShowpostComponent, canActivate:[AuthGuard]},
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
