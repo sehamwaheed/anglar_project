@@ -91,5 +91,8 @@ creatComent(id,coment){
   return this.http.post(this.api+'comment/add/'+id,coment, this.getHeadders())
 }
 
+delCommint(id){
+  return this.http.delete(this.api+'comment/delete/' +id,this.getHeadders())
+}
 
 }

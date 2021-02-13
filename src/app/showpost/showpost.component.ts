@@ -24,6 +24,14 @@ export class ShowpostComponent implements OnInit {
   }
 
 
+  deleteCommint(id, commentIndex){
+    this.postService.delCommint(id).subscribe((data) =>{
+        console.log(`deleteCommint`,data );
+        // this.posts[postIndex].comments = data['comments'];
+        (this.post.comments as []).splice(commentIndex,1)
+    })
+  }
+
   getTimeFromNow(date) {
     return moment(date).fromNow()
   }
@@ -34,6 +42,7 @@ export class ShowpostComponent implements OnInit {
   genarteChar(name:string){
     return name.charAt(0).toUpperCase();
   }
+
 
 
 //   getPost(id){

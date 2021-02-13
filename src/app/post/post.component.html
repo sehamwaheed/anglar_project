@@ -132,7 +132,10 @@
       </div>
       <!-- Post /////-->
 
-      <div class="card shadow mt-5 mb-5" *ngFor="let post of posts">
+      <div
+        class="card shadow mt-5 mb-5"
+        *ngFor="let post of posts; let j = index"
+      >
         <div class="d-flex justify-content-between">
           <div class="row m-2">
             <div
@@ -257,7 +260,10 @@
         </div>
         <div style="display: none" #divCom>
           <div *ngIf="isAuth">
-            <div class="" *ngFor="let comment of post?.comments | slice: 0:4">
+            <div
+              class=""
+              *ngFor="let comment of post?.comments | slice: 0:4; let i = index"
+            >
               <div class="row m-2">
                 <div
                   class="rounded-circle d-flex justify-content-center"
@@ -268,7 +274,7 @@
                     genarteChar(comment.author?.FirstName)
                   }}</span>
                 </div>
-                <div class="media">
+                <div class="media shadow">
                   <div class="media-body">
                     <h5 class="text-muted mt-0" style="margin-top: -0.7em">
                       {{ comment?.author?.FirstName }}
@@ -278,9 +284,18 @@
                       <div class="ml-4">{{ comment?.content }}</div>
                       <br />
                       <div class="history float-right">
-                        <a class="text-sm-center">delete</a>
-                        <i class="fas fa-history"></i
-                        >{{ getTimeFromNow(comment?.createdAt) }}
+                        <a
+                          class="text-sm-center p-1"
+                          (click)="deleteCommint(comment._id, j, i)"
+                          style="
+                            color: #3d4199;
+                            text-decoration: none;
+                            cursor: pointer;
+                          "
+                          >delete</a
+                        >
+                        <i class="far fa-clock" style="color: #3d4199"></i>
+                        {{ getTimeFromNow(comment?.createdAt) }}
                       </div>
                     </div>
                   </div>

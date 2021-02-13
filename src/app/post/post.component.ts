@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { RegisterationService } from '../services/registeration.service';
 
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -107,5 +108,13 @@ export class PostComponent implements OnInit {
 
   genarteChar(name:string){
     return name.charAt(0).toUpperCase();
+  }
+
+  deleteCommint(id, postIndex, commentIndex){
+    this.postService.delCommint(id).subscribe((data) =>{
+        console.log(`deleteCommint`,data );
+        // this.posts[postIndex].comments = data['comments'];
+        (this.posts[postIndex].comments as []).splice(commentIndex,1)
+    })
   }
 }

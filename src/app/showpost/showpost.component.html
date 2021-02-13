@@ -55,7 +55,7 @@
         </div>
       </div>
       <hr />
-      <div *ngFor="let comment of post?.comments">
+      <div *ngFor="let comment of post?.comments; let i = index">
         <div class="media">
           <div class="mr-3">
             <div
@@ -91,6 +91,16 @@
                     color: rgba(5, 5, 5, 0.555);
                   "
                 >
+                  <a
+                    class="text-sm-center p-1"
+                    (click)="deleteCommint(comment._id, i)"
+                    style="
+                      color: #3d4199;
+                      text-decoration: none;
+                      cursor: pointer;
+                    "
+                    >delete</a
+                  >
                   <i class="far fa-clock" style="color: #3d4199"></i>
                   {{ getTimeFromNow(comment?.createdAt) }}
                 </span>
