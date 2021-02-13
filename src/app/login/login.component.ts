@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',result.token);
           localStorage.setItem('uid',result['_id']);
           this.router.navigate(['Home']);
+          this.RegisterationService.isAuthenticated = true;
           this.RegisterationService.loggedIn.next(true)
         },
           error => this.error = 'Could not authenticate'
