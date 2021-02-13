@@ -10,6 +10,11 @@
               </div>
           </div>
       </a>
+      <nav class="navbar">
+        <a class="navbar-brand " routerLink="/Home/search">
+          <img src="../../assets/img/search-512.webp" width="30" height="30" alt="">
+        </a>
+      </nav>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tex" aria-controls="tex"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -20,7 +25,7 @@
                   <a class="nav-link waves-effect waves-light" routerLink="/Home">Home</a>
               </li>
               <li routerLinkActive="active">
-                  <a class="nav-link waves-effect waves-light " *ngIf="login" routerLink="">Profile</a>
+                  <a class="nav-link waves-effect waves-light " *ngIf="login" routerLink="/Home/profile">Profile</a>
               </li>
               <!-- <li routerLinkActive="active">
                 <a class="nav-link" routerLink="/register" *ngIf="!isLoggedIn$ | async" routerLinkActive="active bg-success">register</a>

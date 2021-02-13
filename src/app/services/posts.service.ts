@@ -92,4 +92,10 @@ export class PostsService {
   }
 
 
+
+  //search
+  fetchPostsbytitle(title: string){
+    return this.http.get(this.api + 'blog/' + title, this.getHeadders());
+  }
+
 }

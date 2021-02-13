@@ -9,6 +9,12 @@ import { ShowpostComponent } from './showpost/showpost.component';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+//profile
+import{ProfileComponent} from'./profile/profile.component';
+import { SearchComponent } from './search/search.component';
+import { PersonProfileComponent } from './person-profile/person-profile.component';
+
+
 const routes: Routes = [
   {path:'Home',component:HomeComponent  },
   {path:'Create',component:CreatePostComponent},
@@ -18,6 +24,15 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+   
+  { path: 'Home/PersonProfile/:userName', component: PersonProfileComponent },
+  { path: 'Home/profile', component: ProfileComponent },
+  
+  { path: 'Home/search', component: SearchComponent },
+
+ 
+  
+
   { path: '',   redirectTo: '/Home', pathMatch: 'full' } // redirect to `first-component`
 
 ];

@@ -1,23 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../services/posts.service';
+import { Post, PostsService } from '../services/posts.service';
 
 
 import * as moment from 'moment'
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+
+import{User, UserService}from './../services/user.service';
+
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
 export class PostComponent implements OnInit {
   loader = true;
   posts = [];
+  userDetails:User;
+  searchText:string;
+  items:Post[];
+
+
   constructor(
     private postService: PostsService,
-    private router: Router
-
+    private router: Router,
+    private UserService:UserService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +39,19 @@ export class PostComponent implements OnInit {
       this.loader =false;
       this.posts = data
 
-    })
+    }),
+    this.UserService.getUserProfile().subscribe(
+      (res:any)=>{
+        this.userDetails = res;
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+
+    );
+
+
   }
 
   onLike(postId){

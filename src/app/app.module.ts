@@ -21,6 +21,12 @@ import { ShowpostComponent } from './showpost/showpost.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
+import { PersonProfileComponent } from './person-profile/person-profile.component';
+import { FilterPipe } from './post/filter.pipe';
+
+
 
 
 
@@ -43,7 +49,13 @@ const matMaterial = [
     ShowpostComponent,
 
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    SearchComponent,
+    PersonProfileComponent,
+    FilterPipe,
+  
+   
 
   ],
   imports: [
