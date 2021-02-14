@@ -5,6 +5,8 @@ import { PostsService } from '../services/posts.service';
 import * as moment from 'moment'
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { RegisterationService } from '../services/registeration.service';
+
 
 @Component({
   selector: 'app-post',
@@ -13,14 +15,31 @@ import { Router } from '@angular/router';
 })
 export class PostComponent implements OnInit {
   loader = true;
+  arrColor= ['#28c886','red','blue','#333','#1df'];
+
   posts = [];
+  isAuth: boolean;
   constructor(
     private postService: PostsService,
+    public registerService: RegisterationService,
     private router: Router
 
   ) { }
 
+  chang(post){
+ let  userId =localStorage.getItem("uid") || '';
+
+    if (post.likes.includes(userId)) {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
   ngOnInit(): void {
+    this.registerService.loggedIn.subscribe(res => this.isAuth = res)
     this.postService.getallPosts()
     .pipe(
       map(data =>  data.sort((a, b) => new Date(a.creatAt).getTime() - new Date().getTime()))
@@ -30,6 +49,10 @@ export class PostComponent implements OnInit {
       this.posts = data
 
     })
+
+
+
+
   }
 
   onLike(postId){
@@ -39,8 +62,11 @@ export class PostComponent implements OnInit {
         let post = this.posts.find(p => p._id === postId)
         console.log(post);
         post.likes = data.likes
+
       })
   }
+
+
   getTimeFromNow(date) {
     return moment(date).fromNow()
   }
@@ -58,8 +84,8 @@ export class PostComponent implements OnInit {
     )
   }
   goToUpate(post){
-    this.postService.singlePost = post;
-    this.router.navigate(['/Update'])
+
+    this.router.navigate(['/Update',post._id])
   }
 
   createComent(id,coment){
@@ -73,5 +99,22 @@ export class PostComponent implements OnInit {
       pindex.comments = d.comments
      }
     )
+  }
+
+
+  chooseRandom(){
+    return this.arrColor[Math.floor(Math.random() * 5)];
+  }
+
+  genarteChar(name:string){
+    return name.charAt(0).toUpperCase();
+  }
+
+  deleteCommint(id, postIndex, commentIndex){
+    this.postService.delCommint(id).subscribe((data) =>{
+        console.log(`deleteCommint`,data );
+        // this.posts[postIndex].comments = data['comments'];
+        (this.posts[postIndex].comments as []).splice(commentIndex,1)
+    })
   }
 }

@@ -1,26 +1,154 @@
-<div class="container mt-3 ">
-<div class="card mb-3" style="width: 72%;margin: auto;"  >
-  <div class="card-header text-center ">
-    <img [src]="post?.imagePath" class="card-img-top" alt="..." >
-  </div>
+<app-navbar></app-navbar>
+<br />
+<br />
+<div class="offset-2 col-8 offset-2 mt-5">
+  <div class="card shadow mt-5 mb-5">
+    <div class="d-block m-3">
+      <h3 class="mt-2">{{ post?.titel }}</h3>
+      <br />
+      <div>
+        <span class="badge badge-primary m-1" *ngFor="let item of post?.tags">{{
+          item
+        }}</span>
+      </div>
+    </div>
 
-  <div class="card-body">
-    <div class="ml-2">
-      <div class="h5 m-0">@{{post?.author?.userName}}</div>
-      <div class="h7 text-muted">{{post?.author?.FirstName}} {{post?.author?.LastName}}</div>
-  </div>
-    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+    <img
+      [src]="post?.imagePath"
+      class="img-fluid"
+      alt=""
+      height="280"
+      onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'"
+    />
+    <div class="card-body">
+      <p class="card-text">{{ post?.content }}</p>
 
-    <h5 class="card-title">{{post?.titel}}</h5>
-    <p class="card-text">{{post?.content}}</p>
-    <div>
-      <span class="badge badge-primary" *ngFor="let item of post?.tags">{{item}}</span>
+      <hr />
+      <div class="row d-flex justify-content-between">
+        <div class="col-sm-6 rounded">
+          <div class="row m-2">
+            <div
+              class="rounded-circle d-flex justify-content-center"
+              style="width: 60px; height: 60px"
+              [style.background-color]="chooseRandom()"
+            >
+              <span class="h5 p-3 text-white">{{
+                genarteChar(post?.author?.FirstName)
+              }}</span>
+            </div>
+            <div class="ml-3 row">
+              <div>
+                <div class="h7 text-muted">
+                  {{ post?.author?.FirstName }} {{ post?.author?.LastName }}
+                </div>
+                <div class="history">
+                  <i class="fas fa-history"></i
+                  >{{ getTimeFromNow(post?.creatAt) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 rounded">
+          <div class="mt-3 ml-5">Comments : {{ post?.comments.length }}</div>
+          <div class="ml-5">Likes : {{ post?.likes.length }}</div>
+        </div>
+      </div>
+      <hr />
+      <div *ngFor="let comment of post?.comments; let i = index">
+        <div class="media">
+          <div class="mr-3">
+            <div
+              class="rounded-circle d-flex justify-content-center"
+              style="width: 60px; height: 60px"
+              [style.background-color]="chooseRandom()"
+            >
+              <span class="h5 p-3 text-white">{{
+                genarteChar(comment?.author?.FirstName)
+              }}</span>
+            </div>
+          </div>
+          <div class="media-body">
+            <h5 class="mt-0">
+              {{ comment?.author?.FirstName }} {{ comment?.author?.LastName }}
+            </h5>
+            <div
+              class="p-3 d-flex flex-column"
+              style="
+                background-color: rgba(175, 175, 175, 0.247);
+                width: fit-content;
+                border-radius: 1em;
+              "
+            >
+              <p>{{ comment?.content }}</p>
 
+              <div class="align-self-end">
+                <span
+                  class=""
+                  style="
+                    font-size: small;
+                    font-weight: 300;
+                    color: rgba(5, 5, 5, 0.555);
+                  "
+                >
+                  <a
+                    class="text-sm-center p-1"
+                    (click)="deleteCommint(comment._id, i)"
+                    style="
+                      color: #3d4199;
+                      text-decoration: none;
+                      cursor: pointer;
+                    "
+                    >delete</a
+                  >
+                  <i class="far fa-clock" style="color: #3d4199"></i>
+                  {{ getTimeFromNow(comment?.createdAt) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div>
+        <div class="" *ngFor="let comment of post?.comments">
+          <div class="row m-2">
+            <div
+              class="rounded-circle d-flex justify-content-center"
+              style="width: 60px; height: 60px"
+              [style.background-color]="chooseRandom()"
+            >
+              <span class="h5 p-3 text-white">{{
+                genarteChar(comment?.author?.FirstName)
+              }}</span>
+            </div>
+            <div class="media">
+              <div class="media-body">
+                <h5 class="text-muted mt-0" style="margin-top: -0.7em">
+                  {{ comment?.author?.FirstName }}
+                  {{ comment?.author?.LastName }}
+                </h5>
+                <div>
+                  <div class="ml-4">{{ comment?.content }}</div>
+                  <br />
+                  <div class="history float-right">
+                    <i class="fas fa-history"></i
+                    >{{ getTimeFromNow(comment?.createdAt) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
   </div>
-  </div>
-  <button [routerLink]="['/Home']" routerLinkActive="router-link-active"  class="btn btn-primary offset-5 col-2" > back</button>
 </div>
-</div>
-
-
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

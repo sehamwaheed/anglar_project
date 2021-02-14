@@ -32,6 +32,45 @@ body {
 }
 .media {
   margin: 0.8rem;
-  border: 1px solid;
-  padding: 0.5rem;
+  width: 70%;
+  background-color: #d1d1d1;
+  border-top-right-radius: 1em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+
+  padding: 0.8rem;
+}
+
+.card {
+  border-radius: 1em;
+  border: 0;
+}
+
+.username,
+.history {
+  font-size: medium;
+  color: rgba(5, 5, 5, 0.795);
+  font-weight: 500;
+}
+
+.history {
+  font-size: small;
+  font-weight: 300;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  transition: all 200ms;
+}
+.btn:focus {
+  border: 0;
+  text-decoration: none;
+}
+
+.btn:hover {
+  color: rgb(103, 21, 255);
+}
+.inputComent {
+  border-radius: 2em;
 }

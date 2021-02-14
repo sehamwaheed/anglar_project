@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
-.masthead {
+/* .masthead {
   height: auto;
   background-image: url("/assets/img/bg6.jpg");
   background-size: cover;
@@ -13,4 +13,36 @@
   border-radius: 1em;
   padding: 4ex 2ex 4ex 2ex;
   opacity: 0.8;
+} */
+
+/* @media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #1c2331 !important;
+  }
+} */
+
+.carousel,
+.carousel .carousel-inner,
+.carousel .carousel-inner .active,
+.carousel .carousel-inner .carousel-item,
+.view {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+strong {
+  color: white;
+  font-weight: bolder;
+}
+
+.jumbotron {
+  background-image: url("/assets/img/kisspng-paper-recruitment-poster-graduation-ceremony-wallp-colorful-sky-background-5a70bea793b6a2.1508016715173382796051.png");
+  background-size: content;
+  background-repeat: no-repeat;
+  color: #3d4199;
+  height: 30em;
+  font-family: "Lobster", cursive;
+}
+.lead {
+  font-family: "Noto Sans JP", sans-serif;
 }

@@ -1,41 +1,73 @@
 <!--Navbar blue-->
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary shadow">
+<nav
+  class="navbar fixed-top navbar-expand-md navbar-dark shadow"
+  style="background-color: #3d4199"
+>
   <div class="container">
-
-
-      <a class="navbar-brand" href="">
-          <div class="logo">
-              <div class="d-none d-md-block">
-                  <span class="h5">Information Technology Institute</span>
-              </div>
-          </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tex" aria-controls="tex"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse pr-2" id="tex">
-          <ul class="navbar-nav ml-auto">
-              <li routerLinkActive="active">
-                  <a class="nav-link waves-effect waves-light" routerLink="/Home">Home</a>
-              </li>
-              <li routerLinkActive="active">
-                  <a class="nav-link waves-effect waves-light " *ngIf="isLoggedIn$ | async" routerLink="">Profile</a>
-              </li>
-              <li routerLinkActive="active">
+    <div class="navbar-brand">
+      <img src="assets/img/SjWuv.webp" width="80" height="50" />
+      <a
+        href="#"
+        style="
+          font-family: 'Lobster', cursive;
+          color: #ffffff;
+          text-decoration: none;
+        "
+        >Blogimo</a
+      >
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#tex"
+      aria-controls="tex"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse pr-2" id="tex">
+      <ul class="navbar-nav ml-auto">
+        <li routerLinkActive="active">
+          <a class="nav-link waves-effect waves-light" routerLink="/Home"
+            >Home</a
+          >
+        </li>
+        <li routerLinkActive="active">
+          <a
+            class="nav-link waves-effect waves-light"
+            *ngIf="login"
+            routerLink=""
+            >Profile</a
+          >
+        </li>
+        <!-- <li routerLinkActive="active">
                 <a class="nav-link" routerLink="/register" *ngIf="!isLoggedIn$ | async" routerLinkActive="active bg-success">register</a>
-              </li>
-              <li routerLinkActive="active">
-                  <a class="nav-link"  routerLink="/login" *ngIf="!isLoggedIn$ | async" routerLinkActive="active  bg-success">login</a>
-              <li routerLinkActive="active"> 
-                  <a class="nav-link btn active" *ngIf="isLoggedIn$ | async" routerLinkActive="active  bg-success"(click)="logout()">logout
-                  </a>
-             </li>
-          </ul>
-      </div>
+              </li> -->
+        <li routerLinkActive="active">
+          <a
+            class="nav-link"
+            routerLink="/login"
+            *ngIf="!login"
+            routerLinkActive="active  bg-success"
+            >login</a
+          >
+        </li>
+
+        <li routerLinkActive="active">
+          <a
+            class="nav-link btn active"
+            *ngIf="login"
+            routerLinkActive="active  bg-success"
+            (click)="logout()"
+            >logout
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
-
 
 <!-- Page Content -->
 <!-- <section class="py-5">
