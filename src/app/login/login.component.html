@@ -42,8 +42,8 @@
   <div class="container">
     <!-- Outer Row -->
     <div class="row justify-content-center">
-      <div class="col-xl-10 col-lg-12 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="col-xl-10 col-lg-12 col-md-9 mt-5 pt-5">
+        <div class="card o-hidden border-0 shadow-lg mt-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
@@ -54,7 +54,7 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1
-                      class="h4 mb-4"
+                      class="h4"
                       style="font-family: 'Lobster', cursive; color: ' #d901c2'"
                     >
                       Welcome Back Blogimo!
@@ -65,8 +65,10 @@
                   <form
                     class="user"
                     [formGroup]="LoginForm"
-                    (ngSubmit)="submit()"
-                  >
+                    (ngSubmit)="submit()">
+                    <div class="text-center">
+                      <img [src]="imageURlLogin" fa-border/>
+                  </div>
                     <div class="form-group">
                       <input
                         type="text"
@@ -120,7 +122,7 @@
                           </div>
                         </div>
                       </div>
-                      <h4 *ngIf="error">{{ error }}</h4>
+                      <p *ngIf="error">{{ error }}</p>
                     </div>
                     <br />
 

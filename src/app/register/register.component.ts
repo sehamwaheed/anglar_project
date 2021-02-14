@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     FirstName: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(15),Validators.pattern(this.namePattern)]),
     LastName: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(15),Validators.pattern(this.namePattern)]),
-    userName : new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(15),Validators.pattern(this.usernamePattern)]),
+    userName : new FormControl('', [Validators.required, Validators.minLength(6),Validators.maxLength(15),Validators.pattern(this.usernamePattern)]),
     email: new FormControl('', [Validators.required, Validators.email,Validators.pattern(this.emailPattern)]),
     password : new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(20),Validators.pattern(this.pwdPattern)]),
     dob : new FormControl('', [Validators.required]),
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
              if(this.imageURL){
               localStorage.setItem('UserImage',this.imageURL);
              }else{
-              this.imageURL="../../assets/img/logo.png";
+              this.imageURL="../../assets/img/defaultlogin.jpg";
               localStorage.setItem('UserImage',this.imageURL);
              }
             

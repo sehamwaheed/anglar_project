@@ -62,3 +62,24 @@ a:hover {
 .btn-dark:focus {
   background-color: #8912dd;
 }
+img{
+  border-radius:50% ;
+  width:120px;
+  height: 120px;
+  border: 1px solid #d901c2;
+  margin-bottom: 10%;
+
+}
+p{
+  font-size: 1em;
+  color: red;
+  text-align: center;
+}
+a{
+  font-size: 1.1em;
+  text-align: center;
+}
+div{
+  text-align: center;
+  font-size: 1em;
+}

@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   logout() {
      this.RegisterationService.logout();
   }
+  imageURlLogin :String =localStorage.getItem('UserImage');
   ngOnInit(): void {
     this.isLoggedIn$ = this.RegisterationService.isLoggedIn;
     this.isLoggedIn$.subscribe(d=>{this.login = d;console.log(`this.login`, this.login);})
