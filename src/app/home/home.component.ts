@@ -1,3 +1,4 @@
+import { PostsService } from './../services/posts.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  flag:boolean=this.postservice.flag;
 
-  constructor() { }
+  constructor(public postservice:PostsService) { }
 
   ngOnInit(): void {
+    
   }
-
+  
+  fun(){
+    this.flag=this.postservice.fun(this.flag)
+  }
+  
 }

@@ -23,6 +23,17 @@ export class PostsService {
   ) {
 
   }
+flag:boolean=true;
+fun(flag:boolean){
+  if(this.flag)
+     {
+       this.flag=false;
+       return true;
+     } 
+  else
+  this.flag=true;
+    return false;
+}
 
 getallPosts():Observable<any>{
   return this.http.get(this.api +'blog',this.getHeadders())
