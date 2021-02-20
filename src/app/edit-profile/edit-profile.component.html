@@ -1,0 +1,57 @@
+<div class="container col-sm-9 h-100 gedf-main mt-4 ">
+<div class="card">
+    <div class="card-header">Edit Your Profile</div>
+    <div class="card-body">
+        <form>
+            <div class="form-row">
+            <div class="col">
+              <label for="formGroupExampleInput">{{userDetails.FirstName}}</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" value="sara">
+            </div>
+            <div class="col">
+              <label for="formGroupExampleInput2">{{userDetails.LastName}}</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" value="galal">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="formGroupExampleInput">{{userDetails.userName}}</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" value="sara">
+              </div>
+              <div class="col">
+                <label for="formGroupExampleInput2">{{userDetails.email}}</label>
+                <input type="email" class="form-control" id="formGroupExampleInput2" value="s@gmail.com">
+              </div>
+        </div>
+
+          </form> 
+          <div class="align-content-center"><a href="#" class="btn btn-primary">Confirm</a></div>
+          <div class="mt-5 col-sm-6"><button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">Delete Profile</button></div>
+   
+    </div>
+  </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">Delete Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            you are about to delete..<br>
+         Are you sure you want to continue ? 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="deleteUser(userDetails?._id)">Delete</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
