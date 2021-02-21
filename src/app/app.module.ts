@@ -22,6 +22,11 @@ import { ShowpostComponent } from './showpost/showpost.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShapeCommientComponent } from './shape-commient/shape-commient.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PersonProfileComponent } from './person-profile/person-profile.component';
+import { FilterByNamePipe } from './post/filter-by-name.pipe';
+import { FilterPipe } from './post/filter.pipe';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 
@@ -45,7 +50,12 @@ const matMaterial = [
 
     LoginComponent,
     RegisterComponent,
-    ShapeCommientComponent
+    ShapeCommientComponent,
+    ProfileComponent,
+    PersonProfileComponent,
+    FilterByNamePipe,
+    FilterPipe,
+    EditProfileComponent
 
   ],
   imports: [

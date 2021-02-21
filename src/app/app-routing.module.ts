@@ -7,6 +7,9 @@ import { CreatePostIdComponent } from './create-post-id/create-post-id.component
 import { ShowpostComponent } from './showpost/showpost.component';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PersonProfileComponent } from './person-profile/person-profile.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path:'Home',component:HomeComponent  },
@@ -17,6 +20,13 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+
+  //----------profile----------
+  { path: 'Home/PersonProfile/:userName', component: PersonProfileComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'edit/:userName', component:EditProfileComponent },
+  //---------------------------
+
   { path: '',   redirectTo: '/Home', pathMatch: 'full' } // redirect to `first-component`
 
 ];

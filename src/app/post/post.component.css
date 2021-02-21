@@ -71,6 +71,21 @@ body {
 .btn:hover {
   color: rgb(103, 21, 255);
 }
-.inputComent {
+.inputComent,#searchInput {
   border-radius: 2em;
+}
+
+#Searchinput{
+  border: 2px solid rgb(103, 21, 255);
+  outline:none;
+  display:inline-block;
+  height:34px;
+  vertical-align:middle;
+  position:relative;
+  bottom:14px;
+  right:9px;
+  border-radius:22px;
+  box-sizing:border-box;
+  
+ 
 }
