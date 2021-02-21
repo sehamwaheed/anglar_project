@@ -1,7 +1,7 @@
 <!--Navbar blue-->
 
   <div class="container-fluid">
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark text-primary mt-4">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark text-primary">
     <div class="navbar-brand  ">
       <!-- <img src="assets/img/SjWuv (2).webp" width="80" height="50" /> --> 
       <a
@@ -65,14 +65,13 @@
           </a>
         </li>
         <li routerLinkActive="active">
-          <img id="img" [src]="imageURlLogin"
+          <img id="img" [src]="imageURlLogin" onerror="src='../../assets/img/profilel.jpg'"
             *ngIf="login"
             routerLinkActive="active"
             routerLink=""/>
 
         </li>
       </ul>
-    
     </div>
   </nav>
   </div>

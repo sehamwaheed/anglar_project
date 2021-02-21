@@ -10,6 +10,7 @@ import * as moment from 'moment';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  imageURlLogin :String =localStorage.getItem('UserImage');
   arrColor = ['#28c886', 'red', 'blue', '#333', '#1df'];
   isFollowing: boolean;
   userDetails: User;

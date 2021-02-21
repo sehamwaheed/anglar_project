@@ -178,6 +178,9 @@ export class PersonProfileComponent implements OnInit {
         console.log(err);
       })
   }
-
+  flag:boolean=this.postService.flag;
+  fun(){
+    this.flag=this.postService.fun(this.flag)
+  }
 }
 

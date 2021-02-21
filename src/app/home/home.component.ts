@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
     
   }
   
-  fun(){
-    this.flag=this.postservice.fun(this.flag)
-  }
+  // fun(){
+  //   this.flag=this.postservice.fun(this.flag)
+  // }
   
 }

@@ -1,45 +1,19 @@
-<!-- Full Page Image Header with Vertically Centered Content -->
 
-<!--
-<div class="d-flex align-content-center masthead " >
-
-  <div class="align-self-center" style="width: 100%;">
-   <div class="btingan offset-2 col-8 offset-md-3 text-white col-md-6">
-    <div class="col-12 text-center">
-      <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
-      <p class="lead">A great starter layout for a landing page</p>
-    </div>
-   </div>
-  </div>
-
-</div> -->
-<div class="text-center" style="background-color: lightskyblue;">
+<!-- <div class="text-center" style="background-color: lightskyblue;">
    <button  class=" text-white"(click)="fun()" style="background-color: lightskyblue;border-style: none;"
-   
    >Change Mode</button>
-</div>
+</div> -->
 
-<div *ngIf="flag" class="bg-light">
- <div class="jumbotron jumbotron-fluid m-0">
-  <app-navbar></app-navbar>
-  <div class="container text-center">
-    <h1 class="display-3 mt-3">Blogimo</h1>
-    <p class="lead mt-4"></p>
-  </div>
-</div>
-  <app-post></app-post> 
-</div>
-<div *ngIf="!flag" class="bg-dark">
-  <div class="jumbotron jumbotron-fluid m-0">
-   <app-navbar></app-navbar>
-   <div class="container text-center">
-     <h1 class="display-3 mt-3">Blogimo</h1>
-     <p class="lead mt-4"></p>
-   </div>
-   
- </div>
+    <div class="jumbotron jumbotron-fluid m-0">
+      <app-navbar></app-navbar>
+      <div class="container text-center">
+        <h1 class="display-3 mt-3">Blogimo</h1>
+        <p class="lead mt-4"></p>
+      </div>
+    </div>
+    
  
  <app-post></app-post> 
- </div>
+ 
 
 
