@@ -1,64 +1,87 @@
 <app-navbar></app-navbar>
 <div class="container-fluid gedf-wrapper mt-5">
   <div class="row justify-content-center">
-
-
     <div class="col-sm-12 col-lg-3 mt-5 mb-5">
       <div class="card gedf-card shadow">
         <div class="card-body text-center">
-          <div> <img src="../../assets/img/notfound.png" class="img-lg rounded-circle mb-4" id="profileimg"
-              alt="profile image">
-            <h4>{{userDetails?.FirstName}} {{userDetails?.LastName}}</h4>
-            <p class="text-muted mb-0">@{{userDetails?.userName}}</p>
-            <p class="text-muted mb-0">{{userDetails?.email}}</p>
+          <div>
+            <!-- <img
+              src="../../assets/img/notfound.png"
+              class="img-lg rounded-circle mb-4"
+              id="profileimg"
+              alt="profile image"
+            /> -->
+            <div
+              class="rounded-circle d-flex justify-content-center m-auto"
+              style="width: 90px; height: 90px"
+              [style.background-color]="chooseRandom(userDetails?.FirstName)"
+            >
+              <span
+                class="imgDiv d-flex justify-content-center text-center h3 pt-4 text-white"
+                >{{ genarteChar(userDetails?.FirstName) }}</span
+              >
+            </div>
+            <h4>{{ userDetails?.FirstName }} {{ userDetails?.LastName }}</h4>
+            <p class="text-muted mb-0">@{{ userDetails?.userName }}</p>
+            <p class="text-muted mb-0">{{ userDetails?.email }}</p>
           </div>
           <div class="border-top pt-3">
             <div class="row justify-content-center">
-              <div >
-                <h6>{{myposts.length}}</h6>
+              <div>
+                <h6>{{ myposts?.length }}</h6>
                 <p>Post</p>
               </div>
-              <div class="ml-4 mr-4" >
-                <h6>{{userDetails?.following.length}}</h6>
+              <div class="ml-4 mr-4">
+                <h6>{{ userDetails?.following?.length }}</h6>
                 <p>Followers</p>
               </div>
-              <div >
-                <h6>{{myfollowing?.length}}</h6>
+              <div>
+                <h6>{{ myfollowing?.length }}</h6>
                 <p>Following</p>
               </div>
-              
-              <button class="btn btn-outline-secondary col-sm-12 mt-5" [routerLink]="['/edit', userDetails?.userName]">Edit Profile</button>
 
+              <button
+                class="btn btn-outline-secondary col-sm-12 mt-5"
+                [routerLink]="['/edit', userDetails?.userName]"
+              >
+                Edit Profile
+              </button>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-
-
-
 
     <!------------------------------------------------------>
     <div class="col-md-6 gedf-main">
-
-
       <!--- \\\\\\\Post-->
-      <div *ngIf="myposts.length==0" class=" mt-5 mb-5 list-group-item d-flex justify-content-center text-muted rounded ">
+      <div
+        *ngIf="myposts.length == 0"
+        class="mt-5 mb-5 list-group-item d-flex justify-content-center text-muted rounded"
+      >
         <figure>
-          <img src="../../assets/img/noposts.png" style="width: 110px; height: 100px; display:block;"/>
-          <figcaption  style="font-size:x-large;"> No Posts Yet </figcaption>
+          <img
+            src="../../assets/img/noposts.png"
+            style="width: 110px; height: 100px; display: block"
+          />
+          <figcaption style="font-size: x-large">No Posts Yet</figcaption>
         </figure>
       </div>
 
-      <div class="card shadow mt-5 mb-5" *ngFor="let post of myposts ; let j = index">
+      <div
+        class="card shadow mt-5 mb-5"
+        *ngFor="let post of myposts; let j = index"
+      >
         <div class="d-flex justify-content-between">
           <div class="row m-2">
-            <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-              [style.background-color]="chooseRandom()">
+            <div
+              class="rounded-circle d-flex justify-content-center"
+              style="width: 60px; height: 60px"
+              [style.background-color]="chooseRandom(post.author?.FirstName)"
+            >
               <span class="h5 p-3 text-white">{{
                 genarteChar(post.author?.FirstName)
-                }}</span>
+              }}</span>
             </div>
             <div class="ml-3 row">
               <div>
@@ -67,14 +90,21 @@
                   {{ post?.author?.FirstName }} {{ post?.author?.LastName }}
                 </div>
                 <div class="history">
-                  <i class="fas fa-history"></i>{{ getTimeFromNow(post?.creatAt) }}
+                  <i class="fas fa-history"></i
+                  >{{ getTimeFromNow(post?.creatAt) }}
                 </div>
               </div>
             </div>
           </div>
           <div class="float-right m-2 dropdown open">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id="dropdownMenu3"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
               <i class="fas fa-ellipsis-h"></i>
             </button>
             <div class="dropdown-menu">
@@ -84,49 +114,81 @@
             </div>
           </div>
         </div>
-        <img [src]="post?.imagePath" class="" alt="" height="275" style="width: 100%"
-          onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'" />
+        <img
+          [src]="post?.imagePath"
+          class=""
+          alt=""
+          height="275"
+          style="width: 100%"
+          onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ post?.titel }}</h5>
 
           <p>{{ post?.content | slice: 0:100 }}...</p>
           <div>
-            <span class="badge badge-primary m-1 p-1" *ngFor="let item of post?.tags"
-              style="background-color: #3d4199">{{
-              item }}</span>
+            <span
+              class="badge badge-primary m-1 p-1"
+              *ngFor="let item of post?.tags"
+              style="background-color: #3d4199"
+              >{{ item }}</span
+            >
           </div>
           <hr />
           <div class="row d-flex justify-content-around m-0">
             <div>
-              <button type="button" class="btn" [ngClass]="{ 'text-primary': chang(post) }" (click)="onLike(post?._id)">
+              <button
+                type="button"
+                class="btn"
+                [ngClass]="{ 'text-primary': chang(post) }"
+                (click)="onLike(post?._id)"
+              >
                 <span class="far fa-thumbs-up"></span>
                 {{ post?.likes.length }} Like
               </button>
               <!-- {{chang(post) |json}} -->
             </div>
             <div>
-              <button type="button" class="btn" (click)="
+              <button
+                type="button"
+                class="btn"
+                (click)="
                   divCom.style.display == 'block'
                     ? (divCom.style.display = 'none')
                     : (divCom.style.display = 'block')
-                ">
+                "
+              >
                 <i class="far fa-comment"></i>
                 {{ post?.comments.length }} Comment
               </button>
             </div>
             <div>
-              <button type="button" class="btn" [routerLink]="['/Show', post?._id]">
+              <button
+                type="button"
+                class="btn"
+                [routerLink]="['/Show', post?._id]"
+              >
                 <i class="fas fa-book-open"></i> Show
               </button>
             </div>
           </div>
           <hr />
           <div class="input-group">
-            <input type="text" class="form-control mr-2 inputComent" #com placeholder="Write your comment" aria-label=""
-              aria-describedby="basic-addon1" />
+            <input
+              type="text"
+              class="form-control mr-2 inputComent"
+              #com
+              placeholder="Write your comment"
+              aria-label=""
+              aria-describedby="basic-addon1"
+            />
             <div class="input-group-append">
-              <button class="btn btn-primary inputComent" (click)="createComent(post?._id, com?.value); com.value = ''"
-                type="button" style="background-color: #3d4199; color: #ffffff">
+              <button
+                class="btn btn-primary inputComent"
+                (click)="createComent(post?._id, com?.value); com.value = ''"
+                type="button"
+                style="background-color: #3d4199; color: #ffffff"
+              >
                 Send
               </button>
             </div>
@@ -134,13 +196,21 @@
         </div>
         <div style="display: none" #divCom>
           <div *ngIf="isAuth">
-            <div class="" *ngFor="let comment of post?.comments | slice: 0:4; let i = index">
+            <div
+              class=""
+              *ngFor="let comment of post?.comments | slice: 0:4; let i = index"
+            >
               <div class="row m-2">
-                <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                  [style.background-color]="chooseRandom()">
+                <div
+                  class="rounded-circle d-flex justify-content-center"
+                  style="width: 60px; height: 60px"
+                  [style.background-color]="
+                    chooseRandom(comment?.author?.FirstName)
+                  "
+                >
                   <span class="h5 p-3 text-white">{{
                     genarteChar(comment.author?.FirstName)
-                    }}</span>
+                  }}</span>
                 </div>
                 <div class="media">
                   <div class="media-body">
@@ -152,11 +222,16 @@
                       <div class="ml-4">{{ comment?.content }}</div>
                       <br />
                       <div class="history float-right">
-                        <a class="text-sm-center p-1" (click)="deleteCommint(comment._id, j, i)" style="
+                        <a
+                          class="text-sm-center p-1"
+                          (click)="deleteCommint(comment._id, j, i)"
+                          style="
                             color: #3d4199;
                             text-decoration: none;
                             cursor: pointer;
-                          ">delete</a>
+                          "
+                          >delete</a
+                        >
                         <i class="far fa-clock" style="color: #3d4199"></i>
                         {{ getTimeFromNow(comment?.createdAt) }}
                       </div>
@@ -168,68 +243,91 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
-
 
     <div class="col-sm-12 col-lg-3 mt-5 mb-5">
       <div class="card gedf-card shadow">
         <div class="card-body">
           <div class="list-group row">
             <p>Followers</p>
-            <div *ngIf="followers.length==0" class="list-group-item d-flex mb-2 justify-content-center text-muted">
+            <div
+              *ngIf="followers.length == 0"
+              class="list-group-item d-flex mb-2 justify-content-center text-muted"
+            >
               No Followers Yet
             </div>
-            <div class="list-group-item d-flex mb-2 " *ngFor="let item of followers">
-              <div class="row m-2 ">
-                <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                  [style.background-color]="chooseRandom()">
+            <div
+              class="list-group-item d-flex mb-2"
+              *ngFor="let item of followers"
+            >
+              <div class="row m-2">
+                <div
+                  class="rounded-circle d-flex justify-content-center"
+                  style="width: 60px; height: 60px"
+                  [style.background-color]="chooseRandom(item.FirstName)"
+                >
                   <span class="h5 p-3 text-white">{{
                     genarteChar(item.FirstName)
-                    }}</span>
+                  }}</span>
                 </div>
-                <div class="font-weight-bold fs-13px">@{{item.userName}}</div>
-                <div><a class="text-dark font-weight-500">{{item.FirstName}}
-                    {{item.LastName}}</a></div>
-
+                <div class="font-weight-bold fs-13px">@{{ item.userName }}</div>
+                <div>
+                  <a class="text-dark font-weight-500"
+                    >{{ item.FirstName }} {{ item.LastName }}</a
+                  >
+                </div>
               </div>
-              <button class="btn btn-primary btn-sm " id="button2" (click)="follow(item?._id)">Follow</button>
+              <button
+                class="btn btn-primary btn-sm"
+                id="button2"
+                (click)="follow(item?._id)"
+              >
+                Follow
+              </button>
             </div>
           </div>
-
         </div>
       </div>
-<!--Following-->
-<div class="card gedf-card shadow mt-5">
-  <div class="card-body">
-    <div class="list-group row">
-      <p>Following</p>
-      <div *ngIf="myfollowing.length==0" class="list-group-item d-flex mb-2 justify-content-center text-muted">
-        No Following Yet
-      </div>
-      <div class="list-group-item d-flex mb-2 " *ngFor="let item of myfollowing">
-        <div class="row">
-          <div class="rounded-circle d-flex justify-content-center" style="width: 40px; height: 40px"
-            [style.background-color]="chooseRandom()">
-            <span class="h6 p-3 text-white">{{
-              genarteChar(item.FirstName)
-              }}</span>
-          </div>
-          <div class="ml-2">
-            <div class="font-weight-bold fs-13px">@{{item.userName}}</div>
-            <div><a class="text-dark font-weight-500">{{item.FirstName}}
-                {{item.LastName}}</a></div>
+      <!--Following-->
+      <div class="card gedf-card shadow mt-5">
+        <div class="card-body">
+          <div class="list-group row">
+            <p>Following</p>
+            <div
+              *ngIf="myfollowing.length == 0"
+              class="list-group-item d-flex mb-2 justify-content-center text-muted"
+            >
+              No Following Yet
+            </div>
+            <div
+              class="list-group-item d-flex mb-2"
+              *ngFor="let item of myfollowing"
+            >
+              <div class="row">
+                <div
+                  class="rounded-circle d-flex justify-content-center"
+                  style="width: 40px; height: 40px"
+                  [style.background-color]="chooseRandom(item.FirstName)"
+                >
+                  <span class="h6 p-3 text-white">{{
+                    genarteChar(item.FirstName)
+                  }}</span>
+                </div>
+                <div class="ml-2">
+                  <div class="font-weight-bold fs-13px">
+                    @{{ item.userName }}
+                  </div>
+                  <div>
+                    <a class="text-dark font-weight-500"
+                      >{{ item.FirstName }} {{ item.LastName }}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-</div>
-    </div>
-
-  </div>
-
 </div>

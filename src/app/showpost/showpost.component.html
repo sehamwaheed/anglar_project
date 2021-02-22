@@ -30,7 +30,7 @@
             <div
               class="rounded-circle d-flex justify-content-center"
               style="width: 60px; height: 60px"
-              [style.background-color]="chooseRandom()"
+              [style.background-color]="chooseRandom(post?.author?.FirstName)"
             >
               <span class="h5 p-3 text-white">{{
                 genarteChar(post?.author?.FirstName)
@@ -61,7 +61,9 @@
             <div
               class="rounded-circle d-flex justify-content-center"
               style="width: 60px; height: 60px"
-              [style.background-color]="chooseRandom()"
+              [style.background-color]="
+                chooseRandom(comment?.author?.FirstName)
+              "
             >
               <span class="h5 p-3 text-white">{{
                 genarteChar(comment?.author?.FirstName)

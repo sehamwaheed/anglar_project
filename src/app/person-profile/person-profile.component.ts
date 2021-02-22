@@ -23,7 +23,7 @@ export class PersonProfileComponent implements OnInit {
   myfollowing: User[] = [];
   followernumber: number;
 
-  
+
   isAuth: boolean;
 
   constructor(private route:ActivatedRoute,
@@ -35,11 +35,11 @@ export class PersonProfileComponent implements OnInit {
 
     chang(post) {
       let userId = localStorage.getItem("uid") || '';
-  
+
       if (post.likes.includes(userId)) {
         return true;
       }
-      else { 
+      else {
         return false;
       }
     }
@@ -74,11 +74,15 @@ export class PersonProfileComponent implements OnInit {
           console.log(following);
           this.myfollowing=following;
 
-          
+
         },err=>{
           console.log(err);
         }
-      ),
+      ),   this.userservice.getMyFollowers().subscribe(
+        (res: any) => {
+          this.myfollowing=res;
+          console.log(res);
+        }),
 
         //get all posts
         this.postService.getallPosts().subscribe(
@@ -102,6 +106,7 @@ export class PersonProfileComponent implements OnInit {
 
       })
   }
+
 
 
   getTimeFromNow(date) {
@@ -162,7 +167,7 @@ export class PersonProfileComponent implements OnInit {
       (res: any) => {
         console.log(userId);
         console.log(res);
-
+        this.userDetails.following = res.following;
       }, err => {
         console.log(err);
       })
@@ -174,10 +179,13 @@ export class PersonProfileComponent implements OnInit {
       (res: any) => {
         console.log(userId);
         console.log(res);
+        this.userDetails.following = res.following;
       }, err => {
         console.log(err);
       })
   }
+
+
 
 }
 

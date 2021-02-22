@@ -78,19 +78,18 @@ export class UserService {
   }
 
 
-  //update user 
-updateProfile(id: string, fname: string, lname: string, email:string, username:string,password:string) {
-  let userData: User | FormData;
-  userData = new FormData();
+  //update user
+updateProfile(id: string, fname: string, lname: string, email:string, username:string) {
 
-  userData.append('_id', id);
-  userData.append('FirstName', fname);
-  userData.append('LastName', lname);
-  userData.append('email', email);
-  userData.append('userName', username);
-  userData.append('password', password);
-
-  return this.http.patch(this.api + 'user/'+id, userData ,this.getHeadders())
+  let data ={
+    _id : id,
+FirstName:fname,
+LastName:lname,
+email:email,
+userName:username
+  }
+  console.log(`update`,data );
+  return this.http.patch(this.api + 'user/'+id, data ,this.getHeadders())
 
 }
 
@@ -98,6 +97,6 @@ updateProfile(id: string, fname: string, lname: string, email:string, username:s
 deleteProfile(id){
   return this.http.delete(this.api+'user/'+id ,this.getHeadders());
  }
- 
+
 
 }

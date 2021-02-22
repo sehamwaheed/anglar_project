@@ -28,109 +28,178 @@
       </div> -->
     </div>
     <div class="col-md-6 gedf-main">
-
-
-
       <!------------- Search input //// ------------->
       <div class="mt-3 col-sm-12">
-        <input class="form-control " id="Searchinput" type="text" placeholder="Type to search" [(ngModel)]="searchText"
-          [ngModelOptions]="{standalone: true}">
+        <input
+          class="form-control"
+          id="Searchinput"
+          type="text"
+          placeholder="Type to search"
+          [(ngModel)]="searchText"
+          [ngModelOptions]="{ standalone: true }"
+        />
       </div>
       <!------------- //// end of Search input--------->
 
-
-
       <!------------- start of Search Result Box--------->
-      <div *ngIf="searchText" style="background-color:rgba(103, 21, 255, 0.204);" class=" mb-3 mt-0 shadow p-3 rounded">
+      <div
+        *ngIf="searchText"
+        style="background-color: rgba(103, 21, 255, 0.204)"
+        class="mb-3 mt-0 shadow p-3 rounded"
+      >
         <!-----------nav tab posts people ////------->
         <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Posts">Posts</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#People">People</a></li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#Posts">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#People">People</a>
+          </li>
         </ul>
         <!------------- ///// nav tab---------------->
-
 
         <div class="tab-content">
           <div id="Posts" class="tab-pane active">
             <!-- Post /////-->
-            <div class="card shadow mt-5 mb-5" *ngFor="let post of posts | filter:searchText; let j = index">
+            <div
+              class="card shadow mt-5 mb-5"
+              *ngFor="let post of posts | filter: searchText; let j = index"
+            >
               <div class="d-flex justify-content-between">
                 <div class="row m-2">
-                  <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                    [style.background-color]="chooseRandom()">
+                  <div
+                    class="rounded-circle d-flex justify-content-center"
+                    style="width: 60px; height: 60px"
+                    [style.background-color]="
+                      chooseRandom(post.author?.FirstName)
+                    "
+                  >
                     <span class="h5 p-3 text-white">{{
                       genarteChar(post.author?.FirstName)
-                      }}</span>
+                    }}</span>
                   </div>
                   <div class="ml-3 row">
                     <div>
-                      <div class="username"><a [routerLink]="post?.author?.userName==loginUser?.userName?['/profile']:
-                        ['PersonProfile',post?.author?.userName]">@{{ post?.author?.userName }}</a></div>
+                      <div class="username">
+                        <a
+                          [routerLink]="
+                            post?.author?.userName == loginUser?.userName
+                              ? ['/profile']
+                              : ['PersonProfile', post?.author?.userName]
+                          "
+                          >@{{ post?.author?.userName }}</a
+                        >
+                      </div>
                       <div class="h7 text-muted">
-                        {{ post?.author?.FirstName }} {{ post?.author?.LastName }}
+                        {{ post?.author?.FirstName }}
+                        {{ post?.author?.LastName }}
                       </div>
                       <div class="history">
-                        <i class="fas fa-history"></i>{{ getTimeFromNow(post?.creatAt) }}
+                        <i class="fas fa-history"></i
+                        >{{ getTimeFromNow(post?.creatAt) }}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="float-right m-2 dropdown open">
-                  <button class="btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                  <button
+                    class="btn dropdown-toggle"
+                    type="button"
+                    id="dropdownMenu3"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     <i class="fas fa-ellipsis-h"></i>
                   </button>
                   <div class="dropdown-menu">
                     <div class="h6 dropdown-header">Configuration</div>
-                    <a class="dropdown-item" (click)="goToUpate(post)">Update</a>
-                    <a class="dropdown-item" (click)="delete(post?._id)">Delete</a>
+                    <a class="dropdown-item" (click)="goToUpate(post)"
+                      >Update</a
+                    >
+                    <a class="dropdown-item" (click)="delete(post?._id)"
+                      >Delete</a
+                    >
                   </div>
                 </div>
               </div>
-              <img [src]="post?.imagePath" class="" alt="" height="275" style="width: 100%"
-                onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'" />
+              <img
+                [src]="post?.imagePath"
+                class=""
+                alt=""
+                height="275"
+                style="width: 100%"
+                onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'"
+              />
               <div class="card-body">
                 <h5 class="card-title">{{ post?.titel }}</h5>
 
                 <p>{{ post?.content | slice: 0:100 }}...</p>
                 <div>
-                  <span class="badge badge-primary m-1 p-1" *ngFor="let item of post?.tags"
-                    style="background-color: #3d4199">{{ item }}</span>
+                  <span
+                    class="badge badge-primary m-1 p-1"
+                    *ngFor="let item of post?.tags"
+                    style="background-color: #3d4199"
+                    >{{ item }}</span
+                  >
                 </div>
                 <hr />
                 <div class="row d-flex justify-content-around m-0">
                   <div>
-                    <button type="button" class="btn" [ngClass]="{ 'text-primary': chang(post) }"
-                      (click)="onLike(post?._id)">
+                    <button
+                      type="button"
+                      class="btn"
+                      [ngClass]="{ 'text-primary': chang(post) }"
+                      (click)="onLike(post?._id)"
+                    >
                       <span class="far fa-thumbs-up"></span>
                       {{ post?.likes.length }} Like
                     </button>
                     <!-- {{chang(post) |json}} -->
                   </div>
                   <div>
-                    <button type="button" class="btn" (click)="
-                  divCom.style.display == 'block'
-                    ? (divCom.style.display = 'none')
-                    : (divCom.style.display = 'block')
-                ">
+                    <button
+                      type="button"
+                      class="btn"
+                      (click)="
+                        divCom.style.display == 'block'
+                          ? (divCom.style.display = 'none')
+                          : (divCom.style.display = 'block')
+                      "
+                    >
                       <i class="far fa-comment"></i>
                       {{ post?.comments.length }} Comment
                     </button>
                   </div>
                   <div>
-                    <button type="button" class="btn" [routerLink]="['/Show', post?._id]">
+                    <button
+                      type="button"
+                      class="btn"
+                      [routerLink]="['/Show', post?._id]"
+                    >
                       <i class="fas fa-book-open"></i> Show
                     </button>
                   </div>
                 </div>
                 <hr />
                 <div class="input-group">
-                  <input type="text" class="form-control mr-2 inputComent" #com placeholder="Write your comment"
-                    aria-label="" aria-describedby="basic-addon1" />
+                  <input
+                    type="text"
+                    class="form-control mr-2 inputComent"
+                    #com
+                    placeholder="Write your comment"
+                    aria-label=""
+                    aria-describedby="basic-addon1"
+                  />
                   <div class="input-group-append">
-                    <button class="btn btn-primary inputComent"
-                      (click)="createComent(post?._id, com?.value); com.value = ''" type="button"
-                      style="background-color: #3d4199; color: #ffffff">
+                    <button
+                      class="btn btn-primary inputComent"
+                      (click)="
+                        createComent(post?._id, com?.value); com.value = ''
+                      "
+                      type="button"
+                      style="background-color: #3d4199; color: #ffffff"
+                    >
                       Send
                     </button>
                   </div>
@@ -138,13 +207,24 @@
               </div>
               <div style="display: none" #divCom>
                 <div *ngIf="isAuth">
-                  <div class="" *ngFor="let comment of post?.comments | slice: 0:4; let i = index">
+                  <div
+                    class=""
+                    *ngFor="
+                      let comment of post?.comments | slice: 0:4;
+                      let i = index
+                    "
+                  >
                     <div class="row m-2">
-                      <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                        [style.background-color]="chooseRandom()">
+                      <div
+                        class="rounded-circle d-flex justify-content-center"
+                        style="width: 60px; height: 60px"
+                        [style.background-color]="
+                          chooseRandom(comment.author?.FirstName)
+                        "
+                      >
                         <span class="h5 p-3 text-white">{{
                           genarteChar(comment.author?.FirstName)
-                          }}</span>
+                        }}</span>
                       </div>
                       <div class="media">
                         <div class="media-body">
@@ -156,12 +236,20 @@
                             <div class="ml-4">{{ comment?.content }}</div>
                             <br />
                             <div class="history float-right">
-                              <a class="text-sm-center p-1" (click)="deleteCommint(comment._id, j, i)" style="
-                            color: #3d4199;
-                            text-decoration: none;
-                            cursor: pointer;
-                          ">delete</a>
-                              <i class="far fa-clock" style="color: #3d4199"></i>
+                              <a
+                                class="text-sm-center p-1"
+                                (click)="deleteCommint(comment._id, j, i)"
+                                style="
+                                  color: #3d4199;
+                                  text-decoration: none;
+                                  cursor: pointer;
+                                "
+                                >delete</a
+                              >
+                              <i
+                                class="far fa-clock"
+                                style="color: #3d4199"
+                              ></i>
                               {{ getTimeFromNow(comment?.createdAt) }}
                             </div>
                           </div>
@@ -172,219 +260,46 @@
                 </div>
               </div>
             </div>
-          </div> <!-- close div of tab of posts-->
-
+          </div>
+          <!-- close div of tab of posts-->
 
           <!-- \\\\\people-->
           <div id="People" class="tab-pane fade">
             <div class="col-md-12">
-              <div class="card gedf-card ">
+              <div class="card gedf-card">
                 <div class="card-body">
                   <div class="list-group row">
-                    <div class="list-group-item d-flex mb-2 " *ngFor="let item of allusers |filterByName:searchText">
-                      <div class="row ">
-                        <div class="rounded-circle d-flex justify-content-center" style="width: 40px; height: 40px"
-                          [style.background-color]="chooseRandom()">
+                    <div
+                      class="list-group-item d-flex mb-2"
+                      *ngFor="let item of allusers | filterByName: searchText"
+                    >
+                      <div class="row">
+                        <div
+                          class="rounded-circle d-flex justify-content-center"
+                          style="width: 40px; height: 40px"
+                          [style.background-color]="
+                            chooseRandom(item.FirstName)
+                          "
+                        >
                           <span class="h6 p-3 text-white">{{
                             genarteChar(item.FirstName)
-                            }}</span>
+                          }}</span>
                         </div>
                         <div class="ml-2">
-                          <div class="font-weight-bold fs-13px"><a [routerLink]="item?.userName==loginUser?.userName?['/profile']:
-                            ['PersonProfile',item.userName]">@{{item.userName}}
-                            </a></div>
-                          <div><a class="text-dark font-weight-500">{{item.FirstName}}
-                              {{item.LastName}}</a></div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <!-- close div of tab of people -->
-          </div> <!-- close div of tab content -->
-        </div>
-        <!------------- end of Search Result Box--------->
-
-
-
-
-
-
-        <!------------- start of All Main posts --------->
-        <!--- \\\\\\\Post-->
-        <div *ngIf="!searchText">
-          <div class="card gedf-card shadow mb-6">
-            <div class="card-header">
-              <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
-                    aria-controls="posts" aria-selected="true">Make a publication</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
-                    aria-selected="false" href="#images">Images</a>
-                </li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                  <div class="form-group">
-                    <label class="sr-only" for="message">post</label>
-                    <textarea class="form-control" disabled id="message" rows="3"
-                      placeholder="What are you thinking?"></textarea>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                  <div class="form-group">
-                    <div class="custom-file">
-                      <input type="file" disabled class="custom-file-input" id="customFile" />
-                      <label class="custom-file-label" for="customFile">Upload image</label>
-                    </div>
-                  </div>
-                  <div class="py-4"></div>
-                </div>
-              </div>
-              <div class="btn-toolbar justify-content-between">
-                <div class="btn-group">
-                  <button type="submit" class="btn btn-primary" routerLink="/Create"
-                    style="background-color: #3d4199; color: #ffffff">
-                    Create
-                  </button>
-                </div>
-                <div class="btn-group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-globe"></i>
-                  </button>
-                  <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                              <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                              <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
-                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
-                          </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="card shadow mt-5 mb-5" *ngFor="let post of posts ; let j = index">
-            <div class="d-flex justify-content-between">
-              <div class="row m-2">
-                <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                  [style.background-color]="chooseRandom()">
-                  <span class="h5 p-3 text-white">{{
-                    genarteChar(post.author?.FirstName)
-                    }}</span>
-                </div>
-                <div class="ml-3 row">
-                  <div>
-                    <div class="username"><a  [routerLink]="post?.author?.userName==loginUser?.userName?['/profile']:
-                      ['PersonProfile',post?.author?.userName]">@{{
-                        post?.author?.userName }}</a></div>
-                    <div class="h7 text-muted">
-                      {{ post?.author?.FirstName }} {{ post?.author?.LastName }}
-                    </div>
-                    <div class="history">
-                      <i class="fas fa-history"></i>{{ getTimeFromNow(post?.creatAt) }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="float-right m-2 dropdown open">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-h"></i>
-                </button>
-                <div class="dropdown-menu">
-                  <div class="h6 dropdown-header">Configuration</div>
-                  <a class="dropdown-item" (click)="goToUpate(post)">Update</a>
-                  <a class="dropdown-item" (click)="delete(post?._id)">Delete</a>
-                </div>
-              </div>
-            </div>
-            <img [src]="post?.imagePath" class="" alt="" height="275" style="width: 100%"
-              onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'" />
-            <div class="card-body">
-              <h5 class="card-title">{{ post?.titel }}</h5>
-
-              <p>{{ post?.content | slice: 0:100 }}...</p>
-              <div>
-                <span class="badge badge-primary m-1 p-1" *ngFor="let item of post?.tags"
-                  style="background-color: #3d4199">{{ item }}</span>
-              </div>
-              <hr />
-              <div class="row d-flex justify-content-around m-0">
-                <div>
-                  <button type="button" class="btn" [ngClass]="{ 'text-primary': chang(post) }"
-                    (click)="onLike(post?._id)">
-                    <span class="far fa-thumbs-up"></span>
-                    {{ post?.likes.length }} Like
-                  </button>
-                  <!-- {{chang(post) |json}} -->
-                </div>
-                <div>
-                  <button type="button" class="btn" (click)="
-          divCom.style.display == 'block'
-            ? (divCom.style.display = 'none')
-            : (divCom.style.display = 'block')
-        ">
-                    <i class="far fa-comment"></i>
-                    {{ post?.comments.length }} Comment
-                  </button>
-                </div>
-                <div>
-                  <button type="button" class="btn" [routerLink]="['/Show', post?._id]">
-                    <i class="fas fa-book-open"></i> Show
-                  </button>
-                </div>
-              </div>
-              <hr />
-              <div class="input-group">
-                <input type="text" class="form-control mr-2 inputComent" #com placeholder="Write your comment"
-                  aria-label="" aria-describedby="basic-addon1" />
-                <div class="input-group-append">
-                  <button class="btn btn-primary inputComent"
-                    (click)="createComent(post?._id, com?.value); com.value = ''" type="button"
-                    style="background-color: #3d4199; color: #ffffff">
-                    Send
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div style="display: none" #divCom>
-              <div *ngIf="isAuth">
-                <div class="" *ngFor="let comment of post?.comments | slice: 0:4; let i = index">
-                  <div class="row m-2">
-                    <div class="rounded-circle d-flex justify-content-center" style="width: 60px; height: 60px"
-                      [style.background-color]="chooseRandom()">
-                      <span class="h5 p-3 text-white">{{
-                        genarteChar(comment.author?.FirstName)
-                        }}</span>
-                    </div>
-                    <div class="media">
-                      <div class="media-body">
-                        <h5 class="mt-0" style="margin-top: -0.7em">
-                          {{ comment?.author?.FirstName }}
-                          {{ comment?.author?.LastName }}
-                        </h5>
-                        <div>
-                          <div class="ml-4">{{ comment?.content }}</div>
-                          <br />
-                          <div class="history float-right">
-                            <a class="text-sm-center p-1" (click)="deleteCommint(comment._id, j, i)" style="
-                    color: #3d4199;
-                    text-decoration: none;
-                    cursor: pointer;
-                  ">delete</a>
-                            <i class="far fa-clock" style="color: #3d4199"></i>
-                            {{ getTimeFromNow(comment?.createdAt) }}
+                          <div class="font-weight-bold fs-13px">
+                            <a
+                              [routerLink]="
+                                item?.userName == loginUser?.userName
+                                  ? ['/profile']
+                                  : ['PersonProfile', item.userName]
+                              "
+                              >@{{ item.userName }}
+                            </a>
+                          </div>
+                          <div>
+                            <a class="text-dark font-weight-500"
+                              >{{ item.FirstName }} {{ item.LastName }}</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -394,13 +309,329 @@
               </div>
             </div>
           </div>
+          <!-- close div of tab of people -->
         </div>
-        <!------------- end of All Main posts --------->
+        <!-- close div of tab content -->
+      </div>
+      <!------------- end of Search Result Box--------->
 
+      <!------------- start of All Main posts --------->
+      <!--- \\\\\\\Post-->
+      <div *ngIf="!searchText">
+        <div class="card gedf-card shadow mb-6">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="posts-tab"
+                  data-toggle="tab"
+                  href="#posts"
+                  role="tab"
+                  aria-controls="posts"
+                  aria-selected="true"
+                  >Make a publication</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="images-tab"
+                  data-toggle="tab"
+                  role="tab"
+                  aria-controls="images"
+                  aria-selected="false"
+                  href="#images"
+                  >Images</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="posts"
+                role="tabpanel"
+                aria-labelledby="posts-tab"
+              >
+                <div class="form-group">
+                  <label class="sr-only" for="message">post</label>
+                  <textarea
+                    class="form-control"
+                    disabled
+                    id="message"
+                    rows="3"
+                    placeholder="What are you thinking?"
+                  ></textarea>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="images"
+                role="tabpanel"
+                aria-labelledby="images-tab"
+              >
+                <div class="form-group">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      disabled
+                      class="custom-file-input"
+                      id="customFile"
+                    />
+                    <label class="custom-file-label" for="customFile"
+                      >Upload image</label
+                    >
+                  </div>
+                </div>
+                <div class="py-4"></div>
+              </div>
+            </div>
+            <div class="btn-toolbar justify-content-between">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  routerLink="/Create"
+                  style="background-color: #3d4199; color: #ffffff"
+                >
+                  Create
+                </button>
+              </div>
+              <div class="btn-group">
+                <button
+                  id="btnGroupDrop1"
+                  type="button"
+                  class="btn btn-link dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-globe"></i>
+                </button>
+                <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                              <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                              <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                          </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div
+          class="card shadow mt-5 mb-5"
+          *ngFor="let post of posts; let j = index"
+        >
+          <div class="d-flex justify-content-between">
+            <div class="row m-2">
+              <div
+                class="rounded-circle d-flex justify-content-center"
+                style="width: 60px; height: 60px"
+                [style.background-color]="chooseRandom(post.author?.FirstName)"
+              >
+                <span class="h5 p-3 text-white">{{
+                  genarteChar(post.author?.FirstName)
+                }}</span>
+              </div>
+              <div class="ml-3 row">
+                <div>
+                  <div class="username">
+                    <a
+                      [routerLink]="
+                        post?.author?.userName == loginUser?.userName
+                          ? ['/profile']
+                          : ['PersonProfile', post?.author?.userName]
+                      "
+                      >@{{ post?.author?.userName }}</a
+                    >
+                  </div>
+                  <div class="h7 text-muted">
+                    {{ post?.author?.FirstName }} {{ post?.author?.LastName }}
+                  </div>
+                  <div class="history">
+                    <i class="fas fa-history"></i
+                    >{{ getTimeFromNow(post?.creatAt) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-right m-2 dropdown open">
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                id="dropdownMenu3"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <div class="dropdown-menu">
+                <div class="h6 dropdown-header">Configuration</div>
+                <a class="dropdown-item" (click)="goToUpate(post)">Update</a>
+                <a class="dropdown-item" (click)="delete(post?._id)">Delete</a>
+              </div>
+            </div>
+          </div>
+          <img
+            [src]="post?.imagePath"
+            class=""
+            alt=""
+            height="275"
+            style="width: 100%"
+            onerror="this.src='../../assets/img/product_i_m_img_not_available_1_1.png'"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ post?.titel }}</h5>
 
-        <div class="col-md-3">
-          <!-- <div class="card gedf-card">
+            <p>{{ post?.content | slice: 0:100 }}...</p>
+            <div>
+              <span
+                class="badge badge-primary m-1 p-1"
+                *ngFor="let item of post?.tags"
+                style="background-color: #3d4199"
+                >{{ item }}</span
+              >
+            </div>
+            <hr />
+            <div class="row d-flex justify-content-around m-0">
+              <div>
+                <button
+                  type="button"
+                  class="btn"
+                  [ngClass]="{ 'text-primary': chang(post) }"
+                  (click)="onLike(post?._id)"
+                >
+                  <span class="far fa-thumbs-up"></span>
+                  {{ post?.likes.length }} Like
+                </button>
+                <!-- {{chang(post) |json}} -->
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="
+                    divCom.style.display == 'block'
+                      ? (divCom.style.display = 'none')
+                      : (divCom.style.display = 'block')
+                  "
+                >
+                  <i class="far fa-comment"></i>
+                  {{ post?.comments.length }} Comment
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn"
+                  [routerLink]="['/Show', post?._id]"
+                >
+                  <i class="fas fa-book-open"></i> Show
+                </button>
+              </div>
+            </div>
+            <hr />
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control mr-2 inputComent"
+                #com
+                placeholder="Write your comment"
+                aria-label=""
+                aria-describedby="basic-addon1"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary inputComent"
+                  (click)="createComent(post?._id, com?.value); com.value = ''"
+                  type="button"
+                  style="background-color: #3d4199; color: #ffffff"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="display: none" #divCom>
+            <div *ngIf="isAuth">
+              <div
+                class=""
+                *ngFor="
+                  let comment of post?.comments | slice: 0:4;
+                  let i = index
+                "
+              >
+                <div class="row m-2">
+                  <div
+                    class="rounded-circle d-flex justify-content-center"
+                    style="width: 60px; height: 60px"
+                    [style.background-color]="
+                      chooseRandom(comment.author?.FirstName)
+                    "
+                  >
+                    <span class="h5 p-3 text-white">{{
+                      genarteChar(comment.author?.FirstName)
+                    }}</span>
+                  </div>
+                  <div class="media">
+                    <div class="media-body" style="width: 100%">
+                      <h5 class="mt-0" style="margin-top: -0.7em">
+                        {{ comment?.author?.FirstName }}
+                        {{ comment?.author?.LastName }}
+                      </h5>
+                      <div>
+                        <span
+                          style="display: block"
+                          class="ml-4"
+                          [attr.contenteditable]="enableEdit"
+                          #comment
+                          (keyup.enter)="
+                            editComment(comment); enableEdit = false
+                          "
+                        >
+                          {{ comment?.content }}
+                        </span>
+                        <br />
+                        <div class="history float-right">
+                          <a
+                            class="text-sm-center p-1"
+                            (click)="deleteCommint(comment._id, j, i)"
+                            style="
+                              color: #3d4199;
+                              text-decoration: none;
+                              cursor: pointer;
+                            "
+                            >delete</a
+                          >
+                          <a
+                            class="text-sm-center p-1"
+                            (click)="enableEdit = true"
+                            style="
+                              color: #3d4199;
+                              text-decoration: none;
+                              cursor: pointer;
+                            "
+                            >edit</a
+                          >
+                          <i class="far fa-clock" style="color: #3d4199"></i>
+                          {{ getTimeFromNow(comment?.createdAt) }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!------------- end of All Main posts --------->
+
+      <div class="col-md-3">
+        <!-- <div class="card gedf-card">
               <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -410,7 +641,7 @@
                   <a href="#" class="card-link">Another link</a>
               </div>
           </div> -->
-          <!-- <div class="card gedf-card">
+        <!-- <div class="card gedf-card">
                   <div class="card-body">
                       <h5 class="card-title">Card title</h5>
                       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -420,6 +651,7 @@
                       <a href="#" class="card-link">Another link</a>
                   </div>
               </div> -->
-
-        </div>
       </div>
+    </div>
+  </div>
+</div>

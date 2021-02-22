@@ -94,5 +94,9 @@ creatComent(id,coment){
 delCommint(id){
   return this.http.delete(this.api+'comment/delete/' +id,this.getHeadders())
 }
+editComment(id,comment){
+
+return this.http.patch(this.api+'comment/update/'+id,comment,this.getHeadders())
+}
 
 }
