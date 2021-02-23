@@ -70,7 +70,7 @@
               }}</span>
             </div>
           </div>
-          <div class="media-body">
+          <div class="media-body" style="width: 100%">
             <h5 class="mt-0">
               {{ comment?.author?.FirstName }} {{ comment?.author?.LastName }}
             </h5>
@@ -82,7 +82,15 @@
                 border-radius: 1em;
               "
             >
-              <p>{{ comment?.content }}</p>
+              <span
+                style="display: block"
+                class="ml-4"
+                [attr.contenteditable]="enableEdit"
+                #comment
+                (keyup.enter)="editComment(comment); enableEdit = false"
+              >
+                {{ comment?.content }}
+              </span>
 
               <div class="align-self-end">
                 <span
@@ -102,6 +110,16 @@
                       cursor: pointer;
                     "
                     >delete</a
+                  >
+                  <a
+                    class="text-sm-center p-1"
+                    (click)="enableEdit = true"
+                    style="
+                      color: #3d4199;
+                      text-decoration: none;
+                      cursor: pointer;
+                    "
+                    >edit</a
                   >
                   <i class="far fa-clock" style="color: #3d4199"></i>
                   {{ getTimeFromNow(comment?.createdAt) }}

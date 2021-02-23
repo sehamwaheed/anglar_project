@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../services/posts.service';
 import * as moment from 'moment'
@@ -9,6 +9,9 @@ import * as moment from 'moment'
 })
 export class ShowpostComponent implements OnInit {
    post;
+   enableEdit=true;
+   @Input('commentId') commentId!: string;
+   @Output('change') change = new EventEmitter();
    arrColor= ['#28c886','red','blue','#333','#1df'];
   constructor(private postService:PostsService , private router: Router,private rw:ActivatedRoute) { }
 
@@ -75,6 +78,13 @@ export class ShowpostComponent implements OnInit {
     return name.charAt(0).toUpperCase();
   }
 
+  editComment(data: HTMLSpanElement) {
+
+    const comment = { content: data.textContent };
+    this.postService.editComment(this.commentId, comment).subscribe(() => {
+      this.change.emit();
+    });
+  }
 
 
 //   getPost(id){

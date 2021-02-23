@@ -55,7 +55,7 @@ deleteUser(_id){
   this.userservices.deleteProfile(_id).subscribe(
     (res:any)=>{
       console.log(res);
-      this.router.navigate(['/Home'])
+      this.router.navigate(['/login'])
     }
   )
 }
